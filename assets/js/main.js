@@ -16,24 +16,166 @@
   var intro = document.getElementById("introEspuma");
   if (intro && intro.classList.contains("intro-vai")) {
     try { sessionStorage.setItem("lt_intro", "1"); } catch (e) {}
+    var introVivo = true;
     var encerrarIntro = function () {
-      if (!intro) return;
+      if (!introVivo) return;
+      introVivo = false;
       intro.remove();
       intro = null;
       document.body.classList.remove("intro-rodando");
       document.dispatchEvent(new CustomEvent("lt:intro-fim"));
     };
-    var colunas = intro.querySelectorAll(".intro-colunas i");
-    var colunasProntas = 0;
-    colunas.forEach(function (c) {
-      c.addEventListener("animationend", function (e) {
-        if (e.animationName !== "introColSai") return;
-        colunasProntas++;
-        if (colunasProntas >= colunas.length) encerrarIntro();
-      });
-    });
     intro.addEventListener("click", encerrarIntro); // pular
-    setTimeout(encerrarIntro, 6800);                // guarda anti-travamento
+    setTimeout(encerrarIntro, 7200);                // guarda anti-travamento
+
+    /* ===== simulação: espuma escorrendo como no pára-brisa ===== */
+    (function () {
+      var cv = intro.querySelector(".intro-canvas");
+      if (!cv) return;
+      var ctx = cv.getContext("2d");
+      var W, H;
+      var medir = function () {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = window.innerWidth; H = window.innerHeight;
+        cv.width = W * dpr; cv.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      medir();
+      window.addEventListener("resize", medir);
+
+      var N = 26;
+      var pts = [];
+      for (var i = 0; i <= N; i++) {
+        pts.push({
+          amp: 20 + Math.random() * 55,        // amplitude da ondulação própria
+          w: 1.2 + Math.random() * 2.2,        // frequência própria
+          fase: Math.random() * Math.PI * 2,
+          surto: 0, surtoV: 0,                 // "descolou!" — corrida repentina
+          atraso: Math.random() * 0.14         // dedos que se agarram mais tempo
+        });
+      }
+      var gotas = [];
+      var t0 = null, tPrev = null;
+      var POUR = 0.75, HOLD = 0.95, DRAIN = 3.6;
+
+      var easeOutCubic = function (p) { return 1 - Math.pow(1 - p, 3); };
+      var easeInOut = function (p) { return p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; };
+
+      var tracarCurva = function (xs, ys) {
+        ctx.lineTo(xs[0], ys[0]);
+        for (var i = 0; i < xs.length - 1; i++) {
+          ctx.quadraticCurveTo(xs[i], ys[i], (xs[i] + xs[i + 1]) / 2, (ys[i] + ys[i + 1]) / 2);
+        }
+        ctx.lineTo(xs[xs.length - 1], ys[xs.length - 1]);
+      };
+
+      var frame = function (ts) {
+        if (!introVivo) return;
+        if (t0 === null) { t0 = ts; tPrev = ts; }
+        var dt = Math.min((ts - tPrev) / 1000, 0.05);
+        tPrev = ts;
+        var t = (ts - t0) / 1000;
+
+        var fase, prog;
+        if (t < POUR) { fase = "pour"; prog = easeOutCubic(t / POUR); }
+        else if (t < POUR + HOLD) { fase = "hold"; prog = 1; }
+        else { fase = "drain"; prog = Math.min((t - POUR - HOLD) / DRAIN, 1.2); }
+
+        /* surtos: pedaços de espuma se soltam de repente */
+        if (fase === "drain" && Math.random() < dt * 7) {
+          var k = 1 + Math.floor(Math.random() * (N - 1));
+          pts[k].surtoV += 380 + Math.random() * 540;
+          if (Math.random() < .55 && gotas.length < 12) {
+            gotas.push({ xi: k, x: (k / N) * W + (Math.random() * 40 - 20), y: null, vy: 260 + Math.random() * 380, r: 4 + Math.random() * 9 });
+          }
+        }
+
+        var margem = 150;
+        var nivel;
+        if (fase === "pour") nivel = -margem + prog * (H + margem * 2);
+        else if (fase === "hold") nivel = H + margem;
+        else nivel = -margem + easeInOut(Math.min(prog, 1)) * (H + margem * 2.4);
+
+        var xs = [], ys = [];
+        var completo = true;
+        for (var i = 0; i <= N; i++) {
+          var p = pts[i];
+          p.surto += p.surtoV * dt;
+          p.surtoV *= Math.pow(0.15, dt);
+          p.surto *= Math.pow(0.5, dt);
+          var ondul = Math.sin(p.w * t + p.fase) * p.amp;
+          var agarra = (fase === "drain") ? p.atraso * H * 0.5 * (1 - Math.min(prog, 1)) : 0;
+          ys.push(nivel + ondul + p.surto - agarra);
+          xs.push((i / N) * W + Math.sin(t * 2.1 + i * 1.7) * 7);
+          if (fase === "drain" && ys[i] < H + 70) completo = false;
+        }
+        xs[0] = 0; xs[N] = W;
+
+        ctx.clearRect(0, 0, W, H);
+        var grad = ctx.createLinearGradient(0, 0, 0, H);
+        grad.addColorStop(0, "#FFFFFF");
+        grad.addColorStop(1, "#EDF4FB");
+        ctx.fillStyle = grad;
+
+        /* corpo da espuma (acima da borda no pour/hold; abaixo dela no drain) */
+        ctx.beginPath();
+        if (fase !== "drain") {
+          ctx.moveTo(0, -60);
+          tracarCurva(xs, ys);
+          ctx.lineTo(W, -60);
+        } else {
+          ctx.moveTo(0, H + 60);
+          tracarCurva(xs, ys);
+          ctx.lineTo(W, H + 60);
+        }
+        ctx.closePath();
+        ctx.fill();
+
+        /* caroços de nata na borda */
+        var dir = (fase === "drain") ? 1 : -1;
+        for (var i = 0; i <= N; i++) {
+          var r = 13 + 17 * Math.abs(Math.sin(i * 2.3 + t * 1.4));
+          ctx.beginPath();
+          ctx.arc(xs[i], ys[i] + dir * r * 0.35, r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        /* sombra suave dando volume à borda */
+        ctx.save();
+        ctx.strokeStyle = "rgba(13, 29, 96, 0.10)";
+        ctx.lineWidth = 10;
+        ctx.shadowColor = "rgba(13, 29, 96, 0.22)";
+        ctx.shadowBlur = 22;
+        ctx.beginPath();
+        ctx.moveTo(xs[0], ys[0]);
+        for (var i = 0; i < N; i++) {
+          ctx.quadraticCurveTo(xs[i], ys[i], (xs[i] + xs[i + 1]) / 2, (ys[i] + ys[i + 1]) / 2);
+        }
+        ctx.stroke();
+        ctx.restore();
+
+        /* gotas desgarradas com rastro */
+        if (fase === "drain") {
+          for (var g = gotas.length - 1; g >= 0; g--) {
+            var go = gotas[g];
+            if (go.y === null) go.y = ys[go.xi];
+            go.vy += 900 * dt;
+            go.y += go.vy * dt;
+            ctx.fillStyle = "rgba(240, 247, 252, 0.55)";
+            ctx.fillRect(go.x - go.r * 0.35, ys[go.xi], go.r * 0.7, Math.max(0, go.y - ys[go.xi]));
+            ctx.fillStyle = "#FAFCFE";
+            ctx.beginPath();
+            ctx.ellipse(go.x, go.y, go.r * 0.8, go.r * 1.25, 0, 0, Math.PI * 2);
+            ctx.fill();
+            if (go.y > H + 60) gotas.splice(g, 1);
+          }
+        }
+
+        if (fase === "drain" && (completo || prog >= 1.2)) { encerrarIntro(); return; }
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    })();
   } else if (intro) {
     intro.remove();
     intro = null;
