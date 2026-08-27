@@ -789,35 +789,6 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
 }
 .stat span { font-size: .8rem; color: var(--cinza); }
 
-/* ---------- Franquia teaser ---------- */
-.franquia-teaser {
-  position: relative;
-  padding: 130px 0;
-  background: var(--navy-deep) url("../img/fila-noturna-md.jpg") center / cover no-repeat;
-  color: #fff;
-  overflow: hidden;
-}
-.franquia-teaser::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(201, 62, 0, .93) 8%, rgba(245, 79, 3, .82) 45%, rgba(13, 29, 96, .55));
-}
-.franquia-teaser .container { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 44px; align-items: center; }
-.franquia-teaser h2 { color: #fff; font-size: clamp(2rem, 4.4vw, 3.3rem); }
-.franquia-teaser p { color: #FFE6D8; margin-top: 14px; max-width: 520px; font-size: 1.08rem; }
-.franquia-stats { display: flex; flex-direction: column; gap: 14px; }
-.franquia-stat {
-  background: rgba(255, 255, 255, .12);
-  border: 1px solid rgba(255, 255, 255, .25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 18px 24px;
-  display: flex; align-items: center; gap: 16px;
-}
-.franquia-stat b { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; min-width: 130px; }
-.franquia-stat span { font-size: .9rem; color: #FFE6D8; }
-
 /* ---------- Contato / Visita ---------- */
 .contato { padding: 110px 0 120px; }
 .contato-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 30px; margin-top: 46px; align-items: stretch; }
@@ -924,166 +895,6 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
 .wpp-flutuante svg { width: 30px; height: 30px; color: #fff; }
 
 /* ============================================================
-   PÁGINA FRANQUEADO
-   ============================================================ */
-.hero-franquia {
-  min-height: 92svh;
-  display: flex; align-items: center;
-  padding: calc(var(--header-h) + 50px) 0 90px;
-  background: var(--navy-deep) url("../img/fila-noturna.jpg") center 30% / cover no-repeat;
-  position: relative;
-  color: #fff;
-  overflow: hidden;
-}
-.hero-franquia::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(100deg, rgba(7, 15, 62, .95) 30%, rgba(7, 15, 62, .55) 65%, rgba(245, 79, 3, .25));
-}
-.hero-franquia .container { position: relative; }
-.hero-franquia h1 {
-  color: #fff;
-  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
-  max-width: 800px;
-  margin: 20px 0 18px;
-}
-.hero-franquia h1 em { font-style: normal; color: var(--laranja); }
-.hero-franquia .lead { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: #C6CFF0; max-width: 600px; }
-.hero-franquia .lead b { color: #fff; }
-.hero-franquia .hero-ctas { margin-top: 36px; }
-
-.stats-faixa {
-  background: var(--laranja);
-  padding: 34px 0;
-  position: relative; z-index: 3;
-}
-.stats-faixa .container {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 26px; text-align: center;
-}
-.stats-faixa .stat-f b {
-  display: block;
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
-  color: #fff; line-height: 1.05;
-}
-.stats-faixa .stat-f span { font-size: .86rem; color: #FFE0CE; font-weight: 600; }
-
-.porque { padding: 110px 0; }
-.porque-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 22px; margin-top: 46px;
-}
-.porque-card {
-  background: #fff;
-  border-radius: var(--r-card);
-  padding: 34px 30px;
-  box-shadow: var(--shadow-soft);
-  transition: transform .35s var(--ease-spring), box-shadow .35s ease;
-  position: relative;
-  overflow: hidden;
-}
-.porque-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-pop); }
-.porque-card .icone {
-  width: 54px; height: 54px; border-radius: 18px;
-  background: rgba(245, 79, 3, .1);
-  color: var(--laranja);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-  transition: transform .4s var(--ease-spring), background .3s ease, color .3s ease;
-}
-.porque-card:hover .icone { background: var(--laranja); color: #fff; transform: rotate(-10deg); }
-.porque-card .icone svg { width: 26px; height: 26px; }
-.porque-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
-.porque-card p { font-size: .95rem; color: var(--cinza); }
-
-/* modelos */
-.modelos { background: var(--navy); padding: 110px 0 120px; color: #fff; overflow: hidden; }
-.modelos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 50px; }
-.modelo {
-  border-radius: 34px;
-  padding: 44px 42px;
-  position: relative;
-  overflow: hidden;
-  display: flex; flex-direction: column;
-}
-.modelo-express { background: linear-gradient(165deg, #14297E, #0A1650); border: 1.5px solid rgba(97, 177, 223, .35); }
-.modelo-master { background: linear-gradient(165deg, var(--laranja) 0%, var(--laranja-escuro) 120%); box-shadow: var(--shadow-orange); }
-.modelo .pw-marca { position: absolute; top: -52px; right: -52px; width: 190px; height: 190px; opacity: .12; }
-.modelo-express .pw-marca { --pw-o: var(--laranja); --pw-n: #fff; } /* policromia fundo escuro */
-.modelo-master .pw-marca { --pw-o: #fff; --pw-n: #fff; } /* monocromia branca sobre laranja (manual) */
-.modelo-tipo {
-  font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--celeste);
-}
-.modelo-master .modelo-tipo { color: #FFD3BC; }
-.modelo h3 { color: #fff; font-size: 2.2rem; margin: 8px 0 6px; }
-.modelo .modelo-desc { color: #C6CFF0; font-size: .98rem; margin-bottom: 28px; }
-.modelo-master .modelo-desc { color: #FFE6D8; }
-
-.modelo-dados { display: flex; flex-direction: column; gap: 0; margin-bottom: 30px; }
-.modelo-dado {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 18px;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .13);
-  font-size: .95rem;
-}
-.modelo-dado span { color: #B9C4EA; }
-.modelo-master .modelo-dado span { color: #FFE0CE; }
-.modelo-dado b { font-family: var(--font-display); font-weight: 600; font-size: 1.06rem; color: #fff; text-align: right; }
-.modelo .btn { margin-top: auto; }
-
-.modelos-obs { text-align: center; margin-top: 30px; font-size: .85rem; color: #8F9CCB; }
-
-/* jornada */
-.jornada { padding: 110px 0; }
-.jornada-lista {
-  counter-reset: etapa;
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  gap: 18px; margin-top: 50px;
-}
-.jornada-item {
-  background: #fff; border-radius: 24px;
-  padding: 28px 22px;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  transition: transform .3s var(--ease-spring);
-}
-.jornada-item:hover { transform: translateY(-5px); }
-.jornada-item::before {
-  counter-increment: etapa;
-  content: counter(etapa, decimal-leading-zero);
-  font-family: var(--font-display); font-weight: 600;
-  font-size: 2rem; color: var(--celeste);
-  display: block; margin-bottom: 12px;
-}
-.jornada-item h3 { font-size: 1.05rem; margin-bottom: 6px; }
-.jornada-item p { font-size: .85rem; color: var(--cinza); }
-
-/* CTA final franquia */
-.cta-final {
-  padding: 120px 0;
-  background:
-    radial-gradient(700px 420px at 15% 20%, rgba(97, 177, 223, .16), transparent 60%),
-    var(--navy-deep);
-  color: #fff;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-.cta-final h2 { color: #fff; font-size: clamp(2.1rem, 4.6vw, 3.6rem); max-width: 760px; margin: 16px auto 18px; }
-.cta-final p { color: #B9C4EA; max-width: 560px; margin: 0 auto 38px; }
-.cta-final .pw-marca {
-  position: absolute; left: 50%; top: 50%;
-  width: 780px; height: 780px;
-  transform: translate(-50%, -50%);
-  opacity: .05;
-  --pw-o: #fff; --pw-n: #fff;
-}
-.cta-final .container { position: relative; }
-.cta-final .hero-ctas { justify-content: center; }
-
-/* ============================================================
    PÁGINAS LEGAIS
    ============================================================ */
 .hero-legal {
@@ -1132,8 +943,6 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   .planos-grid { grid-template-columns: 1fr 1fr; }
   .plano-destaque { transform: none; grid-column: span 2; }
   .plano-destaque:hover { transform: translateY(-8px); }
-  .jornada-lista { grid-template-columns: repeat(2, 1fr); }
-  .porque-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1164,13 +973,8 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   .sobre-foto { max-width: 480px; }
   .sobre-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
-  .franquia-teaser .container { grid-template-columns: 1fr; }
   .contato-grid { grid-template-columns: 1fr; }
 
-  .stats-faixa .container { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .modelos-grid { grid-template-columns: 1fr; }
-  .porque-grid { grid-template-columns: 1fr; }
-  .jornada-lista { grid-template-columns: 1fr; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 34px; }
   .footer-base { flex-direction: column; align-items: flex-start; }

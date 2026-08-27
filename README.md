@@ -8,8 +8,7 @@ Basta subir os arquivos em qualquer hospedagem.
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | Home completa: hero interativo, como funciona, diferenciais, planos/preços, limpeza interna, sobre, franquia (teaser), contato + mapa |
-| `franqueado.html` | Landing de expansão: por que investir, modelos LT Express × LT Master, jornada de abertura, CTAs |
+| `index.html` | Home completa: hero interativo, como funciona, diferenciais, planos/preços, limpeza interna, sobre, contato + mapa |
 | `termos.html` | Termos de Uso (conteúdo real do site original) |
 | `privacidade.html` | Política de Privacidade (conteúdo real + direitos LGPD) |
 
@@ -30,7 +29,6 @@ Basta subir os arquivos em qualquer hospedagem.
 | Dado | Onde |
 |---|---|
 | Preços dos planos | `index.html` — seção `#planos` (Essencial 39,90 · Premium 49,90 · Exclusiva 69,90 · Assinatura 199,90/mês — valores da API oficial em jul/2026) |
-| Números da franquia | `franqueado.html` — seção `#modelos` |
 | Horários / endereço / telefone | `index.html` (hero, `#contato`, footer, JSON-LD no `<head>`) e footers das demais páginas |
 | Links de WhatsApp | busca global por `wa.me/5544991754488` (mensagem pré-preenchida no parâmetro `text=`) |
 | Área do cliente | aponta para `https://www.lavathru.com.br/login` (sistema atual de compra/assinatura) |
