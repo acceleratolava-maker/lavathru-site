@@ -930,7 +930,7 @@ body.intro-rodando { overflow: hidden; }
   transform: translateY(-290vh);
   will-change: transform;
 }
-.intro-vai .intro-fluxo { animation: introFluxo 2.7s forwards; }
+.intro-vai .intro-fluxo { animation: introFluxo 4.6s forwards; }
 .intro-massa {
   position: absolute;
   left: -2vw; right: -2vw;
@@ -957,8 +957,8 @@ body.intro-rodando { overflow: hidden; }
 
 @keyframes introFluxo {
   0%   { transform: translateY(-290vh); animation-timing-function: cubic-bezier(.25, .6, .35, 1); }
-  30%  { transform: translateY(0); }
-  52%  { transform: translateY(0); animation-timing-function: cubic-bezier(.55, 0, .8, .45); }
+  17%  { transform: translateY(0); }
+  37%  { transform: translateY(0); animation-timing-function: cubic-bezier(.5, .04, .65, .55); }
   100% { transform: translateY(290vh); }
 }
 
@@ -969,7 +969,7 @@ body.intro-rodando { overflow: hidden; }
   opacity: 0;
   pointer-events: none;
 }
-.intro-vai .intro-marca { animation: introMarca 2.7s forwards; }
+.intro-vai .intro-marca { animation: introMarca 4.6s forwards; }
 .intro-catavento {
   width: clamp(90px, 16vw, 150px); height: auto;
   animation: pwSpin 1.6s linear infinite;
@@ -986,9 +986,9 @@ body.intro-rodando { overflow: hidden; }
   color: var(--laranja);
 }
 @keyframes introMarca {
-  0%, 24%  { opacity: 0; transform: translate(-50%, -50%) scale(.82); }
-  34%, 50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  62%, 100%{ opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+  0%, 12%  { opacity: 0; transform: translate(-50%, -50%) scale(.82); }
+  20%, 36% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50%, 100%{ opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
 }
 
 @media (prefers-reduced-motion: reduce) {

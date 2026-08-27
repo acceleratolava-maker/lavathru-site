@@ -25,7 +25,7 @@
     };
     intro.querySelector(".intro-fluxo").addEventListener("animationend", encerrarIntro);
     intro.addEventListener("click", encerrarIntro); // pular
-    setTimeout(encerrarIntro, 3400);                // guarda anti-travamento
+    setTimeout(encerrarIntro, 5600);                // guarda anti-travamento
   } else if (intro) {
     intro.remove();
     intro = null;
