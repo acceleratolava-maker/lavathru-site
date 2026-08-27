@@ -124,7 +124,9 @@ body::after {
 @keyframes pwSpin { to { transform: rotate(360deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .pw-spin, .marquee-track { animation: none !important; }
+  .pw-spin, .marquee-track, .marquee-item .pinwheel,
+  .assinatura::after, .hero-titulo .tres::after, .gota-foto .bolha-loop { animation: none !important; }
+  .gota-foto .bolha-loop { opacity: 0; }
 }
 
 /* ---------- Botões ---------- */
@@ -303,6 +305,11 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   border-radius: 999px;
   z-index: -1;
   opacity: .55;
+  animation: sublinhaPulsa 3.2s ease-in-out infinite;
+}
+@keyframes sublinhaPulsa {
+  0%, 100% { transform: scaleX(1); opacity: .55; }
+  50% { transform: scaleX(.9); opacity: .85; }
 }
 .hero-sub {
   font-size: clamp(1.05rem, 1.8vw, 1.3rem);
@@ -334,6 +341,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   filter: drop-shadow(0 30px 60px rgba(13, 29, 96, .22));
   cursor: pointer;
   transition: filter .4s ease;
+  will-change: transform;
 }
 .pw-hero:hover { filter: drop-shadow(0 36px 80px rgba(245, 79, 3, .30)); }
 
@@ -413,7 +421,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   font-size: 1.05rem; letter-spacing: .12em; text-transform: uppercase;
   color: #fff; white-space: nowrap;
 }
-.marquee-item .pinwheel { width: 22px; height: 22px; --pw-n: #fff; } /* policromia fundo escuro: laranja + branco */
+.marquee-item .pinwheel { width: 22px; height: 22px; --pw-n: #fff; animation: pwSpin 7s linear infinite; } /* policromia fundo escuro: laranja + branco */
 @keyframes marqueeAnda { to { transform: translateX(-50%); } }
 
 /* ---------- Como funciona ---------- */
@@ -458,6 +466,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   transition: transform .35s var(--ease-spring), background .3s ease, color .3s ease;
 }
 .passo:hover .passo-num { background: var(--laranja); color: #fff; border-color: var(--laranja); transform: rotate(-8deg) scale(1.06); }
+.passo.reveal.is-in .passo-num { box-shadow: 0 10px 32px rgba(97, 177, 223, .28); }
 .passo h3 { font-size: 1.35rem; color: #fff; margin-bottom: 6px; }
 .passo p { color: #B9C4EA; font-size: 1rem; max-width: 420px; }
 .passo b { color: #fff; }
@@ -482,6 +491,26 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   border: 2px dashed rgba(97, 177, 223, .35);
   animation: pwSpin 60s linear infinite;
 }
+/* bolhas subindo dentro da foto do túnel */
+.gota-foto .bolha-loop {
+  position: absolute; bottom: 14%;
+  left: var(--x, 50%);
+  width: var(--s, 10px); height: var(--s, 10px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, .95), rgba(189, 224, 245, .4) 55%, rgba(97, 177, 223, .2));
+  border: 1px solid rgba(255, 255, 255, .75);
+  animation: bolhaLoop var(--t, 8s) linear infinite;
+  animation-delay: var(--d2, 0s);
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes bolhaLoop {
+  0% { transform: translateY(0) scale(.5); opacity: 0; }
+  15% { opacity: .85; }
+  80% { opacity: .45; }
+  100% { transform: translateY(-300px) translateX(26px) scale(1.05); opacity: 0; }
+}
+
 .gota-foto .selo {
   position: absolute; right: -4%; bottom: 6%;
   background: var(--laranja);
@@ -603,6 +632,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   gap: 24px;
   margin-top: 52px;
   align-items: stretch;
+  perspective: 1100px;
 }
 .plano {
   background: rgba(255, 255, 255, .05);
@@ -611,9 +641,10 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   padding: 36px 30px;
   display: flex; flex-direction: column;
   position: relative;
-  transition: transform .35s var(--ease-spring), box-shadow .35s ease, border-color .3s ease, background .3s ease;
+  transform: translateY(var(--ty, 0)) scale(var(--sc, 1)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .25s ease-out, box-shadow .35s ease, border-color .3s ease, background .3s ease;
 }
-.plano:hover { transform: translateY(-8px); border-color: rgba(97, 177, 223, .5); background: rgba(255, 255, 255, .08); }
+.plano:hover { --ty: -8px; border-color: rgba(97, 177, 223, .5); background: rgba(255, 255, 255, .08); }
 
 .plano-nome {
   font-family: var(--font-display); font-weight: 600;
@@ -648,9 +679,9 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   background: linear-gradient(160deg, var(--laranja) 0%, var(--laranja-escuro) 115%);
   border-color: transparent;
   box-shadow: var(--shadow-orange);
-  transform: scale(1.03);
+  --sc: 1.03;
 }
-.plano-destaque:hover { transform: scale(1.03) translateY(-8px); border-color: transparent; background: linear-gradient(160deg, var(--laranja-vivo) 0%, var(--laranja-escuro) 115%); }
+.plano-destaque:hover { border-color: transparent; background: linear-gradient(160deg, var(--laranja-vivo) 0%, var(--laranja-escuro) 115%); }
 .plano-destaque .plano-tag { color: #FFE0CE; }
 .plano-destaque .plano-preco .moeda, .plano-destaque .plano-obs { color: #FFD3BC; }
 .plano-destaque li { color: #FFF0E7; }
@@ -687,6 +718,20 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   transform: translateY(-50%);
   opacity: .10;
   --pw-o: #fff; --pw-n: #fff; /* monocromia branca (manual) */
+}
+/* brilho varrendo o card de assinatura de tempos em tempos */
+.assinatura::after {
+  content: "";
+  position: absolute; top: -60%; bottom: -60%;
+  width: 34%; left: -55%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .07) 42%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .07) 58%, transparent);
+  transform: skewX(-18deg);
+  animation: brilhoVarre 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes brilhoVarre {
+  0%, 58% { left: -55%; }
+  82%, 100% { left: 135%; }
 }
 .assinatura-titulo {
   font-size: clamp(1.7rem, 3vw, 2.5rem);
@@ -941,8 +986,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
 
   .bento-card { grid-column: span 6 !important; }
   .planos-grid { grid-template-columns: 1fr 1fr; }
-  .plano-destaque { transform: none; grid-column: span 2; }
-  .plano-destaque:hover { transform: translateY(-8px); }
+  .plano-destaque { --sc: 1; grid-column: span 2; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
