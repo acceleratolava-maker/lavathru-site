@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instalação — Novo site Lava Thru</title>
+<style>
+  :root { --laranja:#F54F03; --navy:#0D1D60; --celeste:#61B1DF; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font:16px/1.65 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#1c2340; background:#F4F8FC; padding:40px 16px; }
+  .doc { max-width:860px; margin:0 auto; background:#fff; border-radius:16px; padding:48px 52px; box-shadow:0 10px 40px rgba(13,29,96,.10); }
+  h1 { color:var(--navy); font-size:1.9rem; line-height:1.2; margin-bottom:6px; }
+  .sub { color:#5A6484; margin-bottom:28px; }
+  h2 { color:var(--navy); font-size:1.25rem; margin:34px 0 12px; padding-left:14px; border-left:5px solid var(--laranja); }
+  h3 { color:var(--navy); font-size:1.02rem; margin:20px 0 8px; }
+  p, li { color:#3a4468; margin-bottom:10px; }
+  ul, ol { padding-left:24px; margin-bottom:12px; }
+  li { margin-bottom:6px; }
+  code { background:#EEF4FA; color:#0D1D60; padding:2px 7px; border-radius:6px; font-size:.88em; font-family:Consolas, Menlo, monospace; }
+  pre { background:#0D1D60; color:#DCE7F5; padding:18px 20px; border-radius:12px; overflow-x:auto; font-size:.84rem; line-height:1.5; margin:12px 0 18px; font-family:Consolas, Menlo, monospace; }
+  .alerta { background:#FFF3EC; border:1.5px solid #F5B08A; border-radius:12px; padding:16px 18px; margin:16px 0; }
+  .alerta b { color:#C93E00; }
+  .ok { background:#EDF7F0; border:1.5px solid #9ED2AE; border-radius:12px; padding:16px 18px; margin:16px 0; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:.92rem; }
+  th, td { text-align:left; padding:9px 12px; border-bottom:1px solid #E3EBF4; }
+  th { color:var(--navy); font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; }
+  .rodape { margin-top:40px; padding-top:18px; border-top:1px solid #E3EBF4; color:#8892b3; font-size:.85rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  a { color:var(--laranja); }
+  @media print { body{background:#fff;padding:0} .doc{box-shadow:none;padding:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>Novo site Lava Thru — instruções de instalação</h1>
+  <p class="sub">Pacote preparado pela <b>Raydix</b> · site institucional estático (HTML + CSS + JS puros, sem build e sem dependências de servidor)</p>
+
+  <h2>1. O que é este pacote</h2>
+  <p>Este ZIP contém o <b>novo site institucional</b> da Lava Thru, pronto para publicação. Ele substitui apenas as <b>páginas públicas de marketing</b> (home, termos, privacidade). Não contém — e não interfere em — nenhuma lógica de backend.</p>
+  <table>
+    <tr><th>Arquivo/pasta</th><th>O que é</th></tr>
+    <tr><td><code>index.html</code></td><td>Home completa (hero interativo, planos, limpeza interna, sobre, contato)</td></tr>
+    <tr><td><code>termos.html</code> · <code>privacidade.html</code></td><td>Páginas legais</td></tr>
+    <tr><td><code>assets/css</code> · <code>assets/js</code> · <code>assets/img</code></td><td>Estilos, interações e imagens otimizadas (tudo local, sem CDN além do Google Fonts)</td></tr>
+  </table>
+  <p>Preview de referência do resultado esperado: <a href="https://acceleratolava-maker.github.io/lavathru-site/">https://acceleratolava-maker.github.io/lavathru-site/</a></p>
+
+  <h2>2. O que NÃO pode parar (leia antes de tudo)</h2>
+  <div class="alerta">
+    <p><b>O sistema atual (área do cliente) continua sendo necessário.</b> O aplicativo Angular que hoje atende <code>/login</code>, cadastro, compra de planos, assinaturas e o painel administrativo <b>não faz parte deste pacote e deve continuar funcionando</b>, junto com a API (<code>/api/…</code>).</p>
+    <p style="margin-bottom:0">O site novo já aponta os botões "Área do cliente" / "Comprar online" / "Assinar agora" para <code>https://www.lavathru.com.br/login</code>. Ou seja: se <code>/login</code> e <code>/api</code> continuarem respondendo como hoje, <b>nenhum link precisa ser alterado</b>.</p>
+  </div>
+
+  <h2>3. Instalação — opção recomendada (site novo na raiz, app preservado)</h2>
+  <ol>
+    <li><b>Backup</b>: faça uma cópia completa da pasta pública atual do site antes de qualquer coisa.</li>
+    <li>Envie o conteúdo do ZIP para a raiz pública do domínio (ex.: <code>public_html/</code> ou equivalente), substituindo o <code>index.html</code> atual e adicionando a pasta <code>assets/</code> e as duas páginas legais. <b>Não apague</b> os bundles do app Angular (<code>main.*.js</code>, <code>runtime.*.js</code>, <code>styles.*.css</code> etc.) nem qualquer pasta da API.</li>
+    <li>Ajuste o servidor para que as rotas do aplicativo continuem caindo no app Angular, e não no site novo. O ponto-chave: <b>o fallback de rotas desconhecidas deve continuar indo para o shell do app</b> (como é hoje), exceto a raiz <code>/</code>, que passa a ser o site novo.</li>
+  </ol>
+
+  <h3>Exemplo nginx</h3>
+  <pre>
+# raiz e páginas de marketing -> site novo
+location = /              { try_files /index.html =404; }
+location = /termos.html      { try_files /termos.html =404; }
+location = /privacidade.html { try_files /privacidade.html =404; }
+location /assets/            { try_files $uri =404; }
+
+# API continua como está
+location /api/ { proxy_pass http://SEU_BACKEND; }
+
+# demais rotas (login, cadastro, minha-conta, admin...) -> app Angular
+location / { try_files $uri /index-app.html; }
+# obs.: renomeie o index.html ATUAL do Angular para index-app.html
+# e mantenha os bundles dele na raiz (ou mova app+bundles para /app/ e
+# ajuste o fallback para /app/index.html)</pre>
+
+  <h3>Exemplo Apache (.htaccess)</h3>
+  <pre>
+RewriteEngine On
+# API intocada
+RewriteRule ^api/ - [L]
+# arquivos reais (site novo e bundles do app) são servidos direto
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# rotas do app Angular -> shell do app (renomeado)
+RewriteRule ^ index-app.html [L]</pre>
+
+  <p>Se preferir, uma alternativa igualmente válida: mover o app Angular para um subdomínio (ex.: <code>conta.lavathru.com.br</code>) e manter na raiz só o site novo — nesse caso, criar um redirecionamento 301 de <code>/login</code> para o subdomínio (assim os botões do site novo continuam funcionando sem alteração).</p>
+
+  <h2>4. Teste pós-instalação (2 minutos)</h2>
+  <ul>
+    <li>☐ <code>lavathru.com.br</code> abre o site novo (animação de espuma na primeira visita)</li>
+    <li>☐ <code>/termos.html</code> e <code>/privacidade.html</code> abrem</li>
+    <li>☐ Botão <b>"Área do cliente"</b> abre o login do sistema atual normalmente</li>
+    <li>☐ Login, compra de plano e painel admin funcionando como antes</li>
+    <li>☐ Botões de WhatsApp abrem a conversa · mapa do Google carrega na seção Contato</li>
+    <li>☐ Teste no celular (o site é 100% responsivo)</li>
+  </ul>
+  <div class="ok"><p style="margin-bottom:0"><b>Dica de cache:</b> os arquivos CSS/JS são versionados por query string (<code>?v=8</code>). Ao publicar, não é preciso limpar cache de visitantes — a versão nova carrega sozinha. Em atualizações futuras dos assets, basta subir os arquivos novos com a versão incrementada no HTML.</p></div>
+
+  <h2>5. Observações técnicas</h2>
+  <ul>
+    <li>Único recurso externo: Google Fonts (Fredoka + Hanken Grotesk). Todo o resto é local.</li>
+    <li>SEO já incluso: meta tags, Open Graph (<code>assets/img/og-image.jpg</code>) e dados estruturados JSON-LD (endereço, horários, telefone).</li>
+    <li>Favicon e ícones PWA na pasta <code>assets/img/</code> (referenciados nos HTML).</li>
+    <li>Acessibilidade: animações respeitam <code>prefers-reduced-motion</code>; a intro de espuma roda 1x por visita e pode ser pulada com clique.</li>
+    <li>Nada de banco de dados, PHP ou build — qualquer servidor de arquivos estáticos serve.</li>
+  </ul>
+
+  <h2>6. Dúvidas ou ajustes</h2>
+  <p>Qualquer ajuste no site novo (textos, preços, fotos, seções) é feito pela <b>Raydix</b> — fale com quem enviou este pacote que a alteração chega pronta.</p>
+
+  <div class="rodape">
+    <span>Pacote: <b>lavathru-site-novo.zip</b> · versão v8</span>
+    <span>SITE DESENVOLVIDO POR <b>RAYDIX</b></span>
+  </div>
+</div>
+</body>
+</html>

@@ -654,7 +654,23 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
 .plano-preco .cent { font-size: 1.35rem; font-weight: 600; }
 .plano-obs { font-size: .84rem; color: #8F9CCB; margin-bottom: 22px; }
 
-.plano ul { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+.plano-indicacao { font-size: .88rem; color: #8F9CCB; margin: -12px 0 18px; }
+.plano-destaque .plano-indicacao { color: #FFD3BC; }
+
+.plano-veiculos {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: .84rem; font-weight: 600; color: #CFE7F8;
+  background: rgba(97, 177, 223, .12);
+  border: 1px solid rgba(97, 177, 223, .3);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+.plano-veiculos svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: var(--celeste); }
+.plano-destaque .plano-veiculos { background: rgba(255, 255, 255, .14); border-color: rgba(255, 255, 255, .38); color: #FFF0E7; }
+.plano-destaque .plano-veiculos svg { color: #fff; }
+
+.plano ul { display: flex; flex-direction: column; gap: 11px; margin-bottom: 22px; }
 .plano li { display: flex; gap: 10px; font-size: .95rem; color: #D8DFF6; align-items: flex-start; }
 .plano li svg { width: 15px; height: 15px; flex: none; margin-top: 5px; }
 .plano li.nao { color: #7C89BC; }
