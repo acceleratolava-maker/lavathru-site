@@ -925,41 +925,51 @@ body.intro-rodando { overflow: hidden; }
   visibility: hidden; /* só aparece quando o gate inline decide rodar */
 }
 .intro-espuma.intro-vai { visibility: visible; }
-.intro-fluxo {
-  position: absolute; inset: 0;
-  transform: translateY(-290vh);
-  will-change: transform;
-}
-.intro-vai .intro-fluxo { animation: introFluxo 4.6s forwards; }
-.intro-massa {
-  position: absolute;
-  left: -2vw; right: -2vw;
-  top: -155vh; height: 310vh;
-}
-.intro-corpo {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(42vw 30vh at 16% 96%, rgba(222, 236, 249, .95), transparent 60%),
-    radial-gradient(48vw 34vh at 76% 98%, rgba(210, 229, 245, .85), transparent 60%),
-    radial-gradient(34vw 26vh at 46% 99%, rgba(233, 243, 252, .95), transparent 58%),
-    radial-gradient(40vw 28vh at 30% 2%, rgba(222, 236, 249, .9), transparent 60%),
-    radial-gradient(44vw 30vh at 82% 1%, rgba(214, 231, 246, .85), transparent 60%),
-    linear-gradient(180deg, #EAF3FB, #FFFFFF 18%, #FFFFFF 82%, #F1F7FC);
-}
-.intro-borda {
-  position: absolute; left: 0; right: 0;
-  width: 100%; height: 24vh;
-  display: block;
-  filter: drop-shadow(0 14px 24px rgba(13, 29, 96, .18));
-}
-.intro-borda-baixo { top: 100%; margin-top: -2px; }
-.intro-borda-topo { bottom: 100%; margin-bottom: -2px; transform: scaleY(-1); filter: drop-shadow(0 -10px 22px rgba(13, 29, 96, .12)); }
 
-@keyframes introFluxo {
-  0%   { transform: translateY(-290vh); animation-timing-function: cubic-bezier(.25, .6, .35, 1); }
-  17%  { transform: translateY(0); }
-  37%  { transform: translateY(0); animation-timing-function: cubic-bezier(.5, .04, .65, .55); }
-  100% { transform: translateY(290vh); }
+/* dedos de chantili: cada coluna escorre na própria velocidade */
+.intro-colunas {
+  position: absolute; inset: 0;
+  display: flex;
+  overflow: visible;
+  filter: drop-shadow(0 16px 26px rgba(13, 29, 96, .16));
+}
+.intro-colunas i {
+  display: block;
+  flex: 1 0 9.6%;
+  margin-inline: -0.6%;
+  height: 260vh;
+  margin-top: -155vh;
+  transform: translateY(-280vh);
+  will-change: transform;
+  background:
+    linear-gradient(90deg, rgba(222, 236, 249, .55), rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, rgba(214, 231, 246, .5)),
+    linear-gradient(180deg, #EDF4FB, #FFFFFF 12%, #FFFFFF 86%, #EDF5FB);
+  border-radius: 46% 54% 48% 52% / 15vh 12vh 25vh 29vh;
+  box-shadow:
+    inset 0 -7vh 9vh rgba(199, 220, 240, .5),
+    inset 0 6vh 9vh rgba(214, 231, 246, .35);
+}
+.intro-colunas i:nth-child(2n) {
+  background:
+    linear-gradient(90deg, rgba(214, 231, 246, .5), rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0) 68%, rgba(222, 236, 249, .55)),
+    linear-gradient(180deg, #E8F1FA, #FDFEFF 14%, #FDFEFF 84%, #E9F2FA);
+  border-radius: 52% 48% 55% 45% / 13vh 16vh 30vh 24vh;
+}
+.intro-colunas i:nth-child(3n) {
+  border-radius: 49% 51% 42% 58% / 14vh 12vh 27vh 33vh;
+}
+.intro-vai .intro-colunas i {
+  animation:
+    introColEntra .55s var(--de, 0s) cubic-bezier(.3, .7, .35, 1) both,
+    introColSai var(--t, 3s) calc(1.55s + var(--ds, 0s)) cubic-bezier(.55, .06, .6, .5) forwards;
+}
+@keyframes introColEntra {
+  from { transform: translateY(-280vh); }
+  to   { transform: translateY(0); }
+}
+@keyframes introColSai {
+  from { transform: translateY(0); }
+  to   { transform: translateY(290vh); }
 }
 
 .intro-marca {
@@ -969,7 +979,7 @@ body.intro-rodando { overflow: hidden; }
   opacity: 0;
   pointer-events: none;
 }
-.intro-vai .intro-marca { animation: introMarca 4.6s forwards; }
+.intro-vai .intro-marca { animation: introMarca 5.4s forwards; }
 .intro-catavento {
   width: clamp(90px, 16vw, 150px); height: auto;
   animation: pwSpin 1.6s linear infinite;
@@ -986,9 +996,9 @@ body.intro-rodando { overflow: hidden; }
   color: var(--laranja);
 }
 @keyframes introMarca {
-  0%, 12%  { opacity: 0; transform: translate(-50%, -50%) scale(.82); }
-  20%, 36% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  50%, 100%{ opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+  0%, 8%   { opacity: 0; transform: translate(-50%, -50%) scale(.82); }
+  16%, 32% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  44%, 100%{ opacity: 0; transform: translate(-50%, -50%) scale(1.15); }
 }
 
 @media (prefers-reduced-motion: reduce) {

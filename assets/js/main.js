@@ -23,9 +23,17 @@
       document.body.classList.remove("intro-rodando");
       document.dispatchEvent(new CustomEvent("lt:intro-fim"));
     };
-    intro.querySelector(".intro-fluxo").addEventListener("animationend", encerrarIntro);
+    var colunas = intro.querySelectorAll(".intro-colunas i");
+    var colunasProntas = 0;
+    colunas.forEach(function (c) {
+      c.addEventListener("animationend", function (e) {
+        if (e.animationName !== "introColSai") return;
+        colunasProntas++;
+        if (colunasProntas >= colunas.length) encerrarIntro();
+      });
+    });
     intro.addEventListener("click", encerrarIntro); // pular
-    setTimeout(encerrarIntro, 5600);                // guarda anti-travamento
+    setTimeout(encerrarIntro, 6800);                // guarda anti-travamento
   } else if (intro) {
     intro.remove();
     intro = null;
