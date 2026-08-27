@@ -10,6 +10,27 @@
   var reduzMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var temHover = window.matchMedia("(hover: hover)").matches;
 
+  /* ---------- Intro: chantili lava a tela (1x por visita) ----------
+     O gate está inline no HTML (decide rodar/pular ANTES do primeiro paint);
+     aqui fica só a limpeza. */
+  var intro = document.getElementById("introEspuma");
+  if (intro && intro.classList.contains("intro-vai")) {
+    try { sessionStorage.setItem("lt_intro", "1"); } catch (e) {}
+    var encerrarIntro = function () {
+      if (!intro) return;
+      intro.remove();
+      intro = null;
+      document.body.classList.remove("intro-rodando");
+      document.dispatchEvent(new CustomEvent("lt:intro-fim"));
+    };
+    intro.querySelector(".intro-fluxo").addEventListener("animationend", encerrarIntro);
+    intro.addEventListener("click", encerrarIntro); // pular
+    setTimeout(encerrarIntro, 3400);                // guarda anti-travamento
+  } else if (intro) {
+    intro.remove();
+    intro = null;
+  }
+
   /* ---------- Header: estado ao rolar ---------- */
   var header = document.querySelector(".site-header");
   var ultimoY = window.scrollY;
@@ -101,7 +122,9 @@
     var angulo = 0;
     var vel = 0.28;            // graus/frame
     var VEL_BASE = 0.28;       // giro de descanso
-    var boost = 34;            // flourish de chegada: a escova "liga" quando o site abre
+    /* flourish de chegada: se a intro estiver rodando, espera a espuma escorrer */
+    var boost = document.body.classList.contains("intro-rodando") ? 3 : 34;
+    document.addEventListener("lt:intro-fim", function () { boost = 34; }, { once: true });
     var hover = false;
     var emitAcc = 0;
     var bolhasAtivas = 0;
