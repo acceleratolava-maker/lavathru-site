@@ -99,9 +99,9 @@
 
   if (pwSvg && palco && !reduzMotion) {
     var angulo = 0;
-    var vel = 0.18;            // graus/frame
-    var VEL_BASE = 0.18;       // giro de descanso
-    var boost = 24;            // flourish de chegada: a escova "liga" quando o site abre
+    var vel = 0.22;            // graus/frame
+    var VEL_BASE = 0.22;       // giro de descanso
+    var boost = 30;            // flourish de chegada: a escova "liga" quando o site abre
     var hover = false;
     var emitAcc = 0;
     var bolhasAtivas = 0;
@@ -109,19 +109,19 @@
     window.addEventListener("scroll", function () {
       var delta = Math.abs(window.scrollY - ultimoY);
       ultimoY = window.scrollY;
-      boost = Math.min(boost + delta * 0.05, 18);
+      boost = Math.min(boost + delta * 0.06, 24);
     }, { passive: true });
 
     palco.addEventListener("mouseenter", function () { hover = true; });
     palco.addEventListener("mouseleave", function () { hover = false; });
     palco.addEventListener("click", function (ev) {
-      boost = Math.min(boost + 26, 40);
+      boost = Math.min(boost + 30, 46);
       var rect = palco.getBoundingClientRect();
       explodirEspuma(ev.clientX - rect.left, ev.clientY - rect.top);
     });
 
     var criarBolha = function (x, y, tam, dx, dy, dur) {
-      if (bolhasAtivas > 44) return;
+      if (bolhasAtivas > 90) return;
       var b = document.createElement("span");
       b.className = "bolha";
       b.style.width = tam + "px";
@@ -137,10 +137,10 @@
     };
 
     var explodirEspuma = function (cx, cy) {
-      for (var i = 0; i < 14; i++) {
+      for (var i = 0; i < 22; i++) {
         criarBolha(
           cx, cy,
-          8 + Math.random() * 26,
+          9 + Math.random() * 28,
           Math.random() * 260 - 130,
           -(160 + Math.random() * 320),
           2.2 + Math.random() * 2.2
@@ -162,22 +162,23 @@
       var fora = 24 + Math.random() * 40;             // empurrão pra fora
       var dx = -Math.sin(th) * k + Math.cos(th) * fora;
       var dy = Math.cos(th) * k + Math.sin(th) * fora - (70 + Math.random() * 150);
-      criarBolha(px, py, 5 + Math.random() * 14, dx, dy, 1.5 + Math.random() * 1.3);
+      criarBolha(px, py, 7 + Math.random() * 18, dx, dy, 1.3 + Math.random() * 1.2);
     };
 
     (function girar() {
-      var alvoHover = hover ? 7 : 0;
+      var alvoHover = hover ? 9 : 0;
       vel += ((VEL_BASE + alvoHover + boost) - vel) * 0.06;
-      boost *= 0.955;
+      boost *= 0.965;
       angulo = (angulo + vel) % 360;
       pwSvg.style.transform = "rotate(" + angulo + "deg)";
 
-      /* quanto mais rápido a escova gira, mais espuma sai */
-      if (vel > 1.9 && !document.hidden) {
-        emitAcc += vel - 1.5;
-        if (emitAcc > 30) {
+      /* quanto mais rápido a escova gira, mais espuma sai — em tufos */
+      if (vel > 1.2 && !document.hidden) {
+        emitAcc += vel - 0.9;
+        if (emitAcc > 16) {
           emitAcc = 0;
-          espumaDaEscova(Math.min(vel, 11));
+          var jato = vel > 6 ? 3 : 2;
+          for (var j = 0; j < jato; j++) espumaDaEscova(Math.min(vel, 11));
         }
       }
       requestAnimationFrame(girar);
@@ -189,12 +190,12 @@
       criarBolha(
         palco.clientWidth * (0.1 + Math.random() * 0.8),
         palco.clientHeight * (0.55 + Math.random() * 0.4),
-        6 + Math.random() * 16,
+        8 + Math.random() * 18,
         Math.random() * 120 - 60,
         -(220 + Math.random() * 260),
         3.5 + Math.random() * 2.5
       );
-    }, 2100);
+    }, 1500);
   }
 
   /* ---------- Tilt 3D nos cards de plano ---------- */
