@@ -99,9 +99,9 @@
 
   if (pwSvg && palco && !reduzMotion) {
     var angulo = 0;
-    var vel = 0.22;            // graus/frame
-    var VEL_BASE = 0.22;       // giro de descanso
-    var boost = 30;            // flourish de chegada: a escova "liga" quando o site abre
+    var vel = 0.28;            // graus/frame
+    var VEL_BASE = 0.28;       // giro de descanso
+    var boost = 34;            // flourish de chegada: a escova "liga" quando o site abre
     var hover = false;
     var emitAcc = 0;
     var bolhasAtivas = 0;
@@ -121,7 +121,7 @@
     });
 
     var criarBolha = function (x, y, tam, dx, dy, dur) {
-      if (bolhasAtivas > 90) return;
+      if (bolhasAtivas > 120) return;
       var b = document.createElement("span");
       b.className = "bolha";
       b.style.width = tam + "px";
@@ -137,7 +137,7 @@
     };
 
     var explodirEspuma = function (cx, cy) {
-      for (var i = 0; i < 22; i++) {
+      for (var i = 0; i < 28; i++) {
         criarBolha(
           cx, cy,
           9 + Math.random() * 28,
@@ -162,23 +162,23 @@
       var fora = 24 + Math.random() * 40;             // empurrão pra fora
       var dx = -Math.sin(th) * k + Math.cos(th) * fora;
       var dy = Math.cos(th) * k + Math.sin(th) * fora - (70 + Math.random() * 150);
-      criarBolha(px, py, 7 + Math.random() * 18, dx, dy, 1.3 + Math.random() * 1.2);
+      criarBolha(px, py, 9 + Math.random() * 21, dx, dy, 1.3 + Math.random() * 1.2);
     };
 
     (function girar() {
-      var alvoHover = hover ? 9 : 0;
+      var alvoHover = hover ? 11 : 0;
       vel += ((VEL_BASE + alvoHover + boost) - vel) * 0.06;
       boost *= 0.965;
       angulo = (angulo + vel) % 360;
       pwSvg.style.transform = "rotate(" + angulo + "deg)";
 
       /* quanto mais rápido a escova gira, mais espuma sai — em tufos */
-      if (vel > 1.2 && !document.hidden) {
-        emitAcc += vel - 0.9;
-        if (emitAcc > 16) {
+      if (vel > 1.0 && !document.hidden) {
+        emitAcc += vel - 0.7;
+        if (emitAcc > 14) {
           emitAcc = 0;
-          var jato = vel > 6 ? 3 : 2;
-          for (var j = 0; j < jato; j++) espumaDaEscova(Math.min(vel, 11));
+          var jato = vel > 6 ? 4 : 2;
+          for (var j = 0; j < jato; j++) espumaDaEscova(Math.min(vel, 12));
         }
       }
       requestAnimationFrame(girar);
