@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cardápio Lava Thru — 40×22cm frente e verso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja:#F54F03; --laranja-vivo:#FF5A12; --laranja-escuro:#C93E00;
+    --navy:#0D1D60; --navy-deep:#070F3E; --celeste:#61B1DF; --celeste-suave:#BDE0F5;
+    --espuma:#F4F8FC;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  @page { size: 400mm 220mm; margin: 0; }
+  html, body { background:#555; }
+  body { font-family:"Hanken Grotesk", Arial, sans-serif; }
+
+  .pagina {
+    width:400mm; height:220mm;
+    position:relative; overflow:hidden;
+    page-break-after:always;
+    margin:5mm auto;
+  }
+  @media print { body{background:#fff} .pagina{margin:0} }
+
+  .fredoka { font-family:Fredoka, sans-serif; }
+
+  /* ==================== FRENTE ==================== */
+  .frente {
+    background:
+      radial-gradient(180mm 120mm at 82% 30%, rgba(97,177,223,.16), transparent 65%),
+      radial-gradient(150mm 110mm at 8% 95%, rgba(245,79,3,.12), transparent 60%),
+      var(--navy-deep);
+    color:#fff;
+  }
+  .pw-marca-frente { position:absolute; right:-30mm; top:50%; transform:translateY(-50%); width:170mm; opacity:.05; }
+  .bolha-d { position:absolute; border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.9), rgba(189,224,245,.3) 55%, rgba(97,177,223,.12));
+    border:.4mm solid rgba(255,255,255,.35); }
+
+  .frente-conteudo { position:absolute; inset:0; padding:14mm 14mm 26mm; display:flex; gap:12mm; }
+  .frente-esq { width:212mm; display:flex; flex-direction:column; }
+  .eyebrow-f { display:flex; align-items:center; gap:4mm; color:#FFB68C; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; font-size:4.6mm; }
+  .eyebrow-f::before { content:""; width:12mm; height:1.2mm; border-radius:1mm; background:var(--laranja); }
+  .frente-titulo { font-size:17.5mm; line-height:1.08; font-weight:600; margin-top:5mm; letter-spacing:-.4mm; }
+  .frente-titulo em { font-style:normal; color:var(--laranja-vivo); }
+  .frente-sub { font-size:6mm; color:#C6CFF0; margin-top:4.5mm; max-width:195mm; line-height:1.42; }
+  .frente-sub b { color:#fff; }
+
+  .passos-f { display:flex; gap:5mm; margin-top:7mm; }
+  .passo-f { flex:1; background:rgba(97,177,223,.10); border:.5mm solid rgba(97,177,223,.4);
+    border-radius:6mm; padding:5.5mm 6mm; }
+  .passo-f b { display:flex; align-items:center; gap:3mm; font-family:Fredoka; font-size:5.8mm; font-weight:600; }
+  .passo-f b i { font-style:normal; display:inline-flex; align-items:center; justify-content:center;
+    width:8.4mm; height:8.4mm; border-radius:2.6mm; background:var(--laranja); font-size:4.6mm; flex:none; }
+  .passo-f span { display:block; color:#B9C4EA; font-size:4.2mm; margin-top:2mm; line-height:1.35; }
+
+  .assinatura-f { margin-top:auto; background:linear-gradient(120deg, var(--laranja), var(--laranja-escuro));
+    border-radius:7mm; padding:7mm 9mm; display:flex; align-items:center; gap:8mm;
+    box-shadow:0 4mm 12mm rgba(245,79,3,.35); }
+  .assinatura-f .pw-mini { width:16mm; flex:none; }
+  .assinatura-f h3 { font-family:Fredoka; font-size:7.6mm; font-weight:600; line-height:1.15; }
+  .assinatura-f p { font-size:4.4mm; color:#FFE6D8; margin-top:1.5mm; }
+  .assinatura-f .preco-f { margin-left:auto; text-align:right; flex:none; }
+  .assinatura-f .preco-f b { font-family:Fredoka; font-size:11mm; font-weight:600; display:block; line-height:1; }
+  .assinatura-f .preco-f span { font-size:4.2mm; color:#FFE6D8; }
+
+  .frente-dir { flex:1; display:flex; flex-direction:column; gap:7mm; }
+  .qr-card { flex:1; background:#fff; color:var(--navy); border-radius:7mm; padding:6.5mm 7mm;
+    display:flex; align-items:center; gap:7mm; box-shadow:0 3mm 10mm rgba(0,0,0,.25); }
+  .qr-card .qr-box { width:42mm; height:42mm; flex:none; display:flex; align-items:center; justify-content:center; }
+  .qr-card .qr-box img { width:100%; height:100%; }
+  .qr-vazio { border:1mm dashed var(--celeste); border-radius:4mm; color:var(--celeste);
+    font-family:Fredoka; font-size:4.2mm; text-align:center; padding:4mm; line-height:1.3;
+    display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+  .qr-card h4 { font-family:Fredoka; font-size:6.6mm; font-weight:600; line-height:1.1; }
+  .qr-card h4 small { display:block; font-family:"Hanken Grotesk"; font-weight:700; font-size:3.9mm;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--laranja-escuro); margin-bottom:2mm; }
+  .qr-card p { font-size:4.3mm; color:#5A6484; margin-top:2.5mm; line-height:1.4; }
+  .qr-card p b { color:var(--navy); }
+  .estrelas { color:#F5A623; font-size:6mm; letter-spacing:.8mm; }
+
+  .rodape-f { position:absolute; left:0; right:0; bottom:0; height:14mm;
+    background:rgba(255,255,255,.055); border-top:.4mm solid rgba(255,255,255,.12);
+    display:flex; align-items:center; justify-content:space-between; padding:0 14mm;
+    font-size:4.1mm; color:#B9C4EA; }
+  .rodape-f b { color:#fff; font-weight:700; }
+  .rodape-f .raydix { font-size:3.2mm; letter-spacing:.22em; text-transform:uppercase; color:#5A6796; }
+
+  /* ==================== VERSO ==================== */
+  .verso { background:var(--espuma); padding:7mm 8mm; display:flex; flex-direction:column; gap:3.6mm; }
+  .verso > * { flex-shrink:0; }
+  .verso .lavagens { flex-shrink:1; }
+  .verso-header { display:flex; align-items:center; gap:6mm; height:13mm; }
+  .verso-header .logo-v { display:flex; align-items:center; gap:3.5mm; }
+  .verso-header .logo-v .pw-mini { width:12mm; }
+  .verso-header .logo-nome { font-family:Fredoka; font-weight:600; font-size:8.4mm; color:var(--navy); line-height:.9; }
+  .verso-header .logo-sub { font-family:Fredoka; font-weight:500; font-size:2.7mm; letter-spacing:.42em;
+    text-transform:uppercase; color:var(--laranja); }
+  .verso-header h1 { font-family:Fredoka; font-weight:600; font-size:9.8mm; color:var(--navy); margin-left:6mm; }
+  .verso-header h1 em { font-style:normal; color:var(--laranja); }
+  .verso-header .tag-3min { margin-left:auto; background:var(--navy); color:#fff; font-family:Fredoka;
+    font-weight:500; font-size:4.6mm; padding:3mm 7mm; border-radius:99mm; }
+  .verso-header .tag-3min b { color:var(--celeste); }
+
+  .lavagens { display:flex; gap:4.5mm; flex:1; }
+  .lav { flex:1; border-radius:6.5mm; padding:5mm 5.5mm 4.5mm; display:flex; flex-direction:column; position:relative; }
+  .lav h2 { font-family:Fredoka; font-weight:600; font-size:8.6mm; letter-spacing:.02em; }
+  .lav .tag { font-weight:700; font-size:3.7mm; letter-spacing:.1em; text-transform:uppercase; margin-top:1mm; }
+  .lav .ind { font-size:3.9mm; margin-top:2.2mm; line-height:1.35; min-height:8mm; }
+  .lav ul { list-style:none; margin-top:2.2mm; display:flex; flex-direction:column; gap:1.8mm; }
+  .lav li { display:flex; gap:2.4mm; font-size:4.15mm; line-height:1.3; align-items:flex-start; }
+  .lav li svg { width:3.4mm; height:3.4mm; flex:none; margin-top:1mm; }
+  .lav li.nao { opacity:.62; }
+  .veic { margin-top:auto; display:flex; gap:2.5mm; align-items:flex-start; border-radius:3.6mm;
+    padding:2.8mm 3.4mm; font-size:3.6mm; font-weight:700; line-height:1.3; }
+  .veic svg { width:4.6mm; height:4.6mm; flex:none; margin-top:.2mm; }
+  .preco-lav { margin-top:2.8mm; display:flex; align-items:baseline; gap:1.5mm; font-family:Fredoka; }
+  .preco-lav .rs { font-size:5mm; font-weight:500; }
+  .preco-lav .num { font-size:13mm; font-weight:600; line-height:.9; letter-spacing:-.4mm; }
+  .preco-lav .cent { font-size:6.5mm; font-weight:600; }
+  .preco-lav .un { font-size:3.6mm; margin-left:1mm; opacity:.75; font-family:"Hanken Grotesk"; }
+
+  .lav-essencial { background:var(--celeste-suave); color:var(--navy); }
+  .lav-essencial .tag { color:#1A6FA3; }
+  .lav-essencial .ind { color:#33518F; }
+  .lav-essencial .veic { background:rgba(255,255,255,.55); color:var(--navy); }
+  .lav-premium { background:var(--navy); color:#fff; }
+  .lav-premium .tag { color:var(--celeste); }
+  .lav-premium .ind { color:#B9C4EA; }
+  .lav-premium .veic { background:rgba(97,177,223,.16); color:#CFE7F8; }
+  .lav-exclusiva { background:var(--laranja); color:#fff; }
+  .lav-exclusiva .tag { color:#FFD3BC; }
+  .lav-exclusiva .ind { color:#FFE6D8; }
+  .lav-exclusiva .veic { background:rgba(255,255,255,.2); color:#FFF0E7; }
+  .lav-box { background:linear-gradient(165deg, var(--laranja-vivo), var(--laranja-escuro) 130%); color:#fff;
+    box-shadow:0 4mm 12mm rgba(245,79,3,.35); }
+  .lav-box .tag { color:#FFD3BC; }
+  .lav-box .ind { color:#FFE6D8; }
+  .lav-box .veic { background:rgba(255,255,255,.2); color:#FFF0E7; }
+  .badge-top { position:absolute; top:-4mm; left:50%; transform:translateX(-50%);
+    background:var(--navy); color:#fff; font-family:Fredoka; font-weight:600; font-size:3.6mm;
+    letter-spacing:.14em; text-transform:uppercase; padding:2mm 5.5mm; border-radius:99mm; white-space:nowrap;
+    box-shadow:0 2mm 6mm rgba(0,0,0,.25); }
+
+  .faixa-baixo { display:flex; gap:4.5mm; height:68mm; }
+  .assinatura-v { width:148mm; border-radius:6.5mm; position:relative; overflow:hidden;
+    background:radial-gradient(90mm 55mm at 88% 20%, rgba(97,177,223,.35), transparent 60%),
+               linear-gradient(120deg, #123086, var(--navy-deep) 75%);
+    color:#fff; padding:6mm 8mm; display:flex; flex-direction:column; }
+  .assinatura-v .pw-agua { position:absolute; right:-14mm; bottom:-16mm; width:52mm; opacity:.1; }
+  .assinatura-v h2 { font-family:Fredoka; font-weight:600; font-size:8.6mm; line-height:1.1; }
+  .assinatura-v h2 em { font-style:normal; color:var(--celeste); }
+  .chips-v { display:flex; flex-wrap:wrap; gap:2.4mm; margin-top:3.4mm; }
+  .chip-v { font-size:3.7mm; font-weight:700; background:rgba(97,177,223,.14);
+    border:.4mm solid rgba(97,177,223,.4); color:#CFE7F8; padding:1.8mm 4mm; border-radius:99mm; }
+  .assinatura-v .linha-preco { margin-top:auto; display:flex; align-items:flex-end; gap:6mm; }
+  .assinatura-v .preco-lav { margin-top:0; }
+  .assinatura-v .obs-v { font-size:3.6mm; color:#8F9CCB; line-height:1.35; padding-bottom:1mm; }
+
+  .mini-col { flex:1; display:flex; flex-direction:column; gap:4.5mm; }
+  .mini-card { background:#fff; border-radius:6.5mm; padding:4.5mm 5.5mm; box-shadow:0 2mm 8mm rgba(13,29,96,.08); flex:1; }
+  .mini-card h3 { font-family:Fredoka; font-weight:600; font-size:4.9mm; color:var(--navy);
+    display:flex; align-items:center; gap:2.5mm; margin-bottom:1mm; flex-wrap:wrap; }
+  .mini-card h3::before { content:""; width:5mm; height:1.4mm; border-radius:1mm; background:var(--laranja); }
+  .mini-card .sub-mini { font-size:3.1mm; color:#8F9CCB; margin-bottom:2mm; line-height:1.3; }
+  .mini-card table { width:100%; border-collapse:collapse; }
+  .mini-card td { font-size:3.55mm; color:#3a4468; padding:1.15mm 0; border-bottom:.3mm solid #EDF2F8; vertical-align:top; line-height:1.3; }
+  .mini-card tr:last-child td { border-bottom:none; }
+  .mini-card td.v { text-align:right; font-family:Fredoka; font-weight:600; color:var(--navy); white-space:nowrap; padding-left:3mm; }
+  .mini-card td.secao { font-family:Fredoka; font-weight:600; font-size:4.3mm; color:var(--navy);
+    padding-top:2.6mm; border-bottom:none; }
+  .mini-card td.secao::before { content:""; display:inline-block; width:4mm; height:1.2mm;
+    border-radius:1mm; background:var(--laranja); margin-right:2mm; vertical-align:middle; }
+  .conferir { display:inline-block; background:#FFF3C4; color:#8a6d00; font-size:2.9mm; font-weight:700;
+    border-radius:2mm; padding:.5mm 2mm; margin-left:1.5mm; vertical-align:middle; }
+
+  .rodape-v { height:6.5mm; display:flex; align-items:center; justify-content:space-between;
+    font-size:3.6mm; color:#5A6484; padding:0 2mm; }
+  .rodape-v b { color:var(--navy); }
+  .rodape-v .raydix-v { font-size:2.9mm; letter-spacing:.22em; text-transform:uppercase; color:#9aa5c4; }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <g id="pw">
+      <path fill="#F54F03" d="M26.13,15.00 C25.88,15.34 25.64,15.79 25.64,16.18 C25.64,16.77 26.00,17.41 26.52,17.60 C26.84,17.71 27.13,17.62 27.21,17.60 C29.24,16.97 31.32,16.52 33.36,15.91 C36.05,15.11 38.85,14.84 41.65,14.71 C43.90,14.61 45.84,13.28 46.09,10.89 C46.24,9.14 45.31,7.22 43.70,6.46 C40.16,4.79 34.31,8.66 31.47,10.46 C30.25,11.23 29.12,12.21 28.04,13.17 C27.96,13.24 26.76,14.14 26.13,15.00 Z"/>
+      <path fill="#F54F03" d="M17.09,23.56 C17.98,24.41 19.47,24.11 19.54,22.75 C19.72,19.33 20.13,15.92 20.32,12.51 C20.44,10.23 21.60,8.09 21.39,5.94 C20.36,0.84 12.78,1.58 12.63,6.64 C12.33,10.74 13.21,14.95 14.86,18.98 C15.32,20.25 16.19,21.93 17.09,23.56 Z"/>
+      <path fill="#F54F03" d="M36.27,21.37 C36.16,21.34 35.95,21.31 35.70,21.35 C35.45,21.39 35.27,21.48 35.19,21.53 C34.99,21.66 34.86,21.81 34.82,21.86 C34.78,21.91 34.56,22.21 34.54,22.61 C34.53,22.98 34.69,23.26 34.75,23.37 C35.42,24.55 38.38,29.46 39.33,31.12 C40.30,32.81 41.07,34.58 41.84,36.36 C42.36,37.57 43.15,38.72 44.44,39.18 C45.83,39.67 47.48,39.44 48.63,38.50 C50.66,36.93 50.90,33.90 49.19,32.04 C45.79,27.75 41.45,24.22 36.65,21.55 C36.64,21.54 36.55,21.48 36.43,21.43 C36.37,21.40 36.32,21.38 36.27,21.37 Z"/>
+      <path fill="#F54F03" d="M20.33,34.86 C21.03,34.81 21.72,34.67 22.37,34.43 C22.37,34.43 22.38,34.43 22.38,34.43 C23.39,34.05 23.61,32.51 22.63,31.91 C21.00,30.92 19.03,30.54 17.26,29.88 C14.25,28.77 11.26,27.48 8.63,25.63 C6.09,23.71 2.60,25.05 1.78,28.06 C0.00,35.59 14.54,35.29 20.33,34.86 Z"/>
+      <path fill="#F54F03" d="M33.98,33.01 C33.97,32.60 33.76,32.29 33.57,32.13 C33.07,31.65 32.52,31.81 32.44,31.83 C32.07,31.94 31.83,32.25 31.76,32.34 C28.92,35.48 26.95,37.52 26.43,38.10 C25.63,39.00 24.81,39.88 23.93,40.71 C22.56,41.98 20.63,42.98 19.83,44.72 C18.29,48.19 21.82,52.16 25.47,50.71 C28.02,49.70 29.50,46.28 30.60,43.97 C32.18,40.65 33.32,37.03 33.98,33.35 C33.97,33.24 33.98,33.12 33.98,33.01 Z"/>
+      <path fill="#0D1D60" class="pn" d="M48.85,17.94 C41.86,15.93 34.29,15.96 27.21,17.60 C26.15,17.95 25.35,16.60 25.75,15.68 C27.03,12.72 29.97,10.21 32.50,8.33 C34.37,6.95 35.25,4.67 34.04,2.53 C33.14,1.02 31.27,0.00 29.52,0.32 C25.66,1.02 23.15,7.57 21.89,10.68 C20.51,14.55 19.76,18.65 19.54,22.75 C19.47,24.12 17.97,24.41 17.08,23.55 C15.80,22.31 14.83,20.39 14.01,18.83 C12.78,16.90 12.48,14.49 11.06,12.86 C7.26,9.30 1.52,14.32 4.34,18.52 C6.48,22.03 9.64,24.95 13.32,27.26 C15.66,28.88 20.46,30.89 22.63,31.91 C23.61,32.51 23.39,34.05 22.38,34.43 C19.26,35.56 15.47,36.26 12.11,36.30 C11.26,36.31 10.36,36.53 9.63,36.97 C7.84,38.04 7.28,40.35 7.96,42.26 C8.84,44.72 11.26,45.43 13.65,44.83 C17.36,43.89 20.93,41.58 24.01,39.38 C26.90,37.31 29.55,34.91 31.86,32.22 C32.64,31.30 33.94,31.96 33.98,33.01 C34.06,36.22 33.46,39.96 32.38,43.25 C32.24,43.95 32.20,44.72 32.32,45.32 C33.09,49.04 38.27,50.23 40.40,46.92 C41.88,44.62 41.10,40.97 40.65,38.46 C39.71,33.17 37.67,27.89 34.75,23.37 C34.43,22.89 34.49,22.28 34.84,21.83 C35.66,20.78 37.37,21.64 38.33,22.00 C39.78,22.54 41.19,23.19 42.54,23.94 C44.39,24.75 45.75,26.49 47.78,26.68 C49.72,26.75 51.63,25.44 52.14,23.53 C52.89,21.07 51.33,18.46 48.85,17.94 Z"/>
+    </g>
+    <g id="pw-branco">
+      <use href="#pw" style="filter:brightness(0) invert(1)"/>
+    </g>
+    <path id="gota-v" d="M12 2.2C8.4 7.6 5.5 11 5.5 14.8a6.5 6.5 0 0 0 13 0C18.5 11 15.6 7.6 12 2.2Z"/>
+    <g id="carro-v" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2"/>
+      <circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ============================ FRENTE ============================ -->
+<div class="pagina frente">
+  <svg class="pw-marca-frente" viewBox="0 0 52.9 52.2"><use href="#pw" style="filter:grayscale(1) brightness(4)"/></svg>
+  <div class="bolha-d" style="width:9mm;height:9mm;left:230mm;top:24mm"></div>
+  <div class="bolha-d" style="width:5mm;height:5mm;left:218mm;top:44mm"></div>
+  <div class="bolha-d" style="width:12mm;height:12mm;left:196mm;top:160mm;opacity:.5"></div>
+  <div class="bolha-d" style="width:6mm;height:6mm;left:390mm;top:120mm;opacity:.6"></div>
+
+  <div class="frente-conteudo">
+    <div class="frente-esq">
+      <span class="eyebrow-f fredoka">Lava-rápido automatizado · Maringá</span>
+      <h1 class="frente-titulo fredoka">Bem-vindo à Lava&hairsp;Thru.<br><em>Seu carro agradece.</em></h1>
+      <p class="frente-sub"><b>Limpo, seco e brilhando em 3 minutos</b> — sem descer do carro e sem agendar. É só entrar na fila.</p>
+
+      <div class="passos-f">
+        <div class="passo-f"><b class="fredoka"><i>1</i> Entre com o carro</b><span>Sem agendamento — o atendimento é na hora.</span></div>
+        <div class="passo-f"><b class="fredoka"><i>2</i> Atravesse o túnel</b><span>Espuma, cera e tecnologia trabalhando em volta de você.</span></div>
+        <div class="passo-f"><b class="fredoka"><i>3</i> Saia brilhando</b><span>Secagem completa e brilho de cera. 3 minutos.</span></div>
+      </div>
+
+      <div class="assinatura-f">
+        <svg class="pw-mini" viewBox="0 0 52.9 52.2"><use href="#pw" style="filter:brightness(0) invert(1)"/></svg>
+        <div>
+          <h3 class="fredoka">Assinatura ilimitada</h3>
+          <p>Lave quantas vezes quiser, com box de limpeza interna incluso. Pergunte no guichê!</p>
+        </div>
+        <div class="preco-f">
+          <b class="fredoka">R$ 199,90</b>
+          <span>/mês · sem fidelidade</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="frente-dir">
+      <div class="qr-card">
+        <div class="qr-box"><img src="qr-site.svg" alt="QR do site"></div>
+        <div>
+          <h4 class="fredoka"><small>Aponte a câmera</small>Conheça nosso site</h4>
+          <p>Planos, preços e <b>assinatura online</b> — tudo em<br><b>www.lavathru.com.br</b></p>
+        </div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-box"><img src="qr-google.svg" alt="QR da avaliação no Google"></div>
+        <div>
+          <h4 class="fredoka"><small>Sua opinião vale ouro</small>Avalie a gente no Google</h4>
+          <p><span class="estrelas">★★★★★</span><br>Leva 30 segundos e ajuda a Lava Thru a crescer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape-f">
+    <span><b>Seg–Sáb</b> 07:30–19:30 · <b>Dom</b> 09:00–15:00</span>
+    <span>WhatsApp <b>(44) 9 9175-4488</b></span>
+    <span>@lavathru</span>
+    <span>Av. Colombo, 2888 · Zona 7 · Maringá-PR</span>
+  </div>
+</div>
+
+<!-- ============================ VERSO ============================ -->
+<div class="pagina verso">
+  <div class="verso-header">
+    <div class="logo-v">
+      <svg class="pw-mini" viewBox="0 0 52.9 52.2" style="width:12mm"><use href="#pw"/></svg>
+      <div>
+        <div class="logo-nome">Lava&hairsp;Thru</div>
+        <div class="logo-sub">Car Wash</div>
+      </div>
+    </div>
+    <h1>Escolha o seu <em>brilho</em>.</h1>
+    <div class="tag-3min">lavagem em <b>3 minutos</b> · sem agendamento</div>
+  </div>
+
+  <div class="lavagens">
+    <!-- ESSENCIAL -->
+    <div class="lav lav-essencial">
+      <h2 class="fredoka">Essencial</h2>
+      <div class="tag">Ducha rápida de manutenção</div>
+      <p class="ind">Indicada para carros com sujeira leve.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="#1A6FA3"><use href="#gota-v"/></svg>Shampoo + cera secante</li>
+        <li><svg viewBox="0 0 24 24" fill="#1A6FA3"><use href="#gota-v"/></svg>Esfregação, enxágue e secagem no túnel</li>
+        <li class="nao"><svg viewBox="0 0 24 24" fill="#33518F"><use href="#gota-v"/></svg>Sem pré-lavagem</li>
+      </ul>
+      <div class="veic"><svg viewBox="0 0 24 24"><use href="#carro-v"/></svg>Carros pequenos e SUVs</div>
+      <div class="preco-lav"><span class="rs">R$</span><span class="num">39</span><span class="cent">,90</span></div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="lav lav-premium">
+      <h2 class="fredoka">Premium</h2>
+      <div class="tag">Lavagem completa e com brilho</div>
+      <p class="ind">Indicada para sujeiras fixadas e aparentes.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="#61B1DF"><use href="#gota-v"/></svg>Pré-lavagem</li>
+        <li><svg viewBox="0 0 24 24" fill="#61B1DF"><use href="#gota-v"/></svg>Shampoo</li>
+        <li><svg viewBox="0 0 24 24" fill="#61B1DF"><use href="#gota-v"/></svg>Shampoo com cera — brilho e proteção</li>
+        <li><svg viewBox="0 0 24 24" fill="#61B1DF"><use href="#gota-v"/></svg>Cera secante</li>
+        <li><svg viewBox="0 0 24 24" fill="#61B1DF"><use href="#gota-v"/></svg>Esfregação, enxágue e secagem no túnel</li>
+      </ul>
+      <div class="veic"><svg viewBox="0 0 24 24"><use href="#carro-v"/></svg>Carros pequenos, SUVs e caminhonetes</div>
+      <div class="preco-lav"><span class="rs">R$</span><span class="num">49</span><span class="cent">,90</span></div>
+    </div>
+
+    <!-- EXCLUSIVA -->
+    <div class="lav lav-exclusiva">
+      <h2 class="fredoka">Exclusiva</h2>
+      <div class="tag">Proteção máxima</div>
+      <p class="ind">Ideal para sujeiras fixadas e maior proteção da pintura.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Pré-lavagem manual</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Shampoo</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Shampoo com cera — brilho e proteção</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Cera secante</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Coating cerâmico hidrorrepelente</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Esfregação, enxágue e secagem no túnel</li>
+      </ul>
+      <div class="veic"><svg viewBox="0 0 24 24"><use href="#carro-v"/></svg>+ caminhonetes, vans e furgões</div>
+      <div class="preco-lav"><span class="rs">R$</span><span class="num">59</span><span class="cent">,90</span></div>
+    </div>
+
+    <!-- EXCLUSIVA + BOX -->
+    <div class="lav lav-box">
+      <span class="badge-top fredoka">A mais completa</span>
+      <h2 class="fredoka">Exclusiva <span style="font-size:6mm">+ BOX</span></h2>
+      <div class="tag">Proteção máxima + limpeza interna</div>
+      <p class="ind">A Exclusiva inteira, com o box de limpeza interna incluso.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg><b>Tudo da Exclusiva</b></li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg><b>+ 20 min de box de limpeza interna</b></li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Aspiradores e lavadora de tapetes</li>
+        <li><svg viewBox="0 0 24 24" fill="#fff"><use href="#gota-v"/></svg>Flanelas, produtos de limpeza e perfumadores</li>
+      </ul>
+      <div class="veic"><svg viewBox="0 0 24 24"><use href="#carro-v"/></svg>+ caminhonetes, vans e furgões</div>
+      <div class="preco-lav"><span class="rs">R$</span><span class="num">69</span><span class="cent">,90</span></div>
+    </div>
+  </div>
+
+  <div class="faixa-baixo">
+    <!-- ASSINATURA -->
+    <div class="assinatura-v">
+      <svg class="pw-agua" viewBox="0 0 52.9 52.2"><use href="#pw" style="filter:brightness(0) invert(1)"/></svg>
+      <h2 class="fredoka">Assinatura: lavagens Exclusivas <em>ilimitadas</em>.</h2>
+      <div class="chips-v">
+        <span class="chip-v">Lave todo dia, se quiser</span>
+        <span class="chip-v">Box incluso em cada visita</span>
+        <span class="chip-v">Sem fidelidade</span>
+        <span class="chip-v">Vinculada à placa do veículo</span>
+      </div>
+      <div class="linha-preco">
+        <div class="preco-lav" style="color:#fff"><span class="rs">R$</span><span class="num">199</span><span class="cent">,90</span><span class="un">/mês</span></div>
+        <p class="obs-v">Assine no guichê ou em<br><b style="color:#CFE7F8">www.lavathru.com.br</b></p>
+      </div>
+    </div>
+
+    <!-- ADICIONAIS -->
+    <div class="mini-col">
+      <div class="mini-card">
+        <h3 class="fredoka">Adicionais</h3>
+        <p class="sub-mini">Exclusivos para quem já contratou a lavagem externa</p>
+        <table>
+          <tr><td>Box de limpeza interna (20 min)</td><td class="v">R$ 12,00</td></tr>
+          <tr><td>Limpeza Express (equipe) — pequenos e SUVs</td><td class="v">R$ 29,00</td></tr>
+          <tr><td>Limpeza Express (equipe) — caminhonetes e vans</td><td class="v">R$ 39,00</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ESTÉTICA -->
+    <div class="mini-col">
+      <div class="mini-card">
+        <h3 class="fredoka">Estética detalhada</h3>
+        <table>
+          <tr><td>Revitalização de plásticos externos</td><td class="v">R$ 20,00</td></tr>
+          <tr><td>Selante de pneus</td><td class="v">R$ 15,00</td></tr>
+          <tr><td>Cristalização de vidros (GLACO) — para-brisa</td><td class="v">R$ 40,00</td></tr>
+          <tr><td>Cristalização — todos os vidros</td><td class="v">R$ 70,00</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- AVULSO + PESADA (um card, duas seções) -->
+    <div class="mini-col">
+      <div class="mini-card">
+        <h3 class="fredoka">Serviço avulso</h3>
+        <table>
+          <tr><td>Uso do box de limpeza (20 min)</td><td class="v">R$ 20,00</td></tr>
+          <tr><td>Limpeza Express — pequenos e SUVs</td><td class="v">R$ 39,00</td></tr>
+          <tr><td>Limpeza Express — caminhonetes e vans</td><td class="v">R$ 49,00</td></tr>
+          <tr><td class="secao" colspan="2">Limpeza pesada</td></tr>
+          <tr><td>Remoção de barro</td><td class="v">R$ 20,00</td></tr>
+          <tr><td>Remoção de sujeira de pássaros</td><td class="v">R$ 10,00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape-v">
+    <span><b>Seg–Sáb</b> 07:30–19:30 · <b>Dom</b> 09:00–15:00 &nbsp;·&nbsp; WhatsApp <b>(44) 9 9175-4488</b> &nbsp;·&nbsp; @lavathru &nbsp;·&nbsp; <b>www.lavathru.com.br</b></span>
+  </div>
+</div>
+
+</body>
+</html>

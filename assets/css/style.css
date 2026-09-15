@@ -4,9 +4,39 @@
    Laranja  #F54F03  · Pantone Orange 021 C
    Azul     #0D1D60  · Pantone 2757 C
    Celeste  #61B1DF  · Pantone 2915 C
-   Tipografia: Fredoka (display) + Hanken Grotesk (texto)
+   Tipografia: Gorga Grotesque (oficial da marca, self-hosted)
    Desenvolvido por Raydix
    ============================================================ */
+
+/* ---------- Tipografia oficial: Gorga Grotesque (fornecida pelo cliente) ---------- */
+@font-face {
+  font-family: "Gorga Grotesque";
+  src: url("../fonts/gorga-regular.woff2") format("woff2");
+  font-weight: 100 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gorga Grotesque";
+  src: url("../fonts/gorga-bold.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gorga Grotesque";
+  src: url("../fonts/gorga-lightitalic.woff2") format("woff2");
+  font-weight: 100 350;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gorga Grotesque";
+  src: url("../fonts/gorga-italic.woff2") format("woff2");
+  font-weight: 351 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   --laranja: #F54F03;
@@ -22,8 +52,8 @@
   --ink: #101B4D;
   --cinza: #5A6484;
 
-  --font-display: "Fredoka", sans-serif;
-  --font-body: "Hanken Grotesk", sans-serif;
+  --font-display: "Gorga Grotesque", "Fredoka", sans-serif;
+  --font-body: "Gorga Grotesque", "Hanken Grotesk", sans-serif;
 
   --r-card: 28px;
   --r-pill: 999px;

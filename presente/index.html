@@ -4,15 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🎁 Um presente pra você</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-regular.woff2") format("woff2"); font-weight:100 500; font-style:normal; font-display:swap; }
+@font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-bold.woff2") format("woff2"); font-weight:600 900; font-style:normal; font-display:swap; }
+</style>
 <style>
   :root { --laranja:#F54F03; --laranja-vivo:#FF5A12; --navy:#0D1D60; --navy-deep:#070F3E; --celeste:#61B1DF; }
   * { box-sizing:border-box; margin:0; padding:0; }
   html, body { height:100%; }
   body {
-    font-family:"Hanken Grotesk", Arial, sans-serif;
+    font-family:"Gorga Grotesque", Arial, sans-serif;
     background: radial-gradient(900px 600px at 70% 20%, rgba(97,177,223,.16), transparent 60%),
                 radial-gradient(700px 500px at 15% 85%, rgba(245,79,3,.10), transparent 60%),
                 var(--navy-deep);
@@ -52,7 +53,7 @@
   .aberto .corpo { transform:scale(.55) translateY(90px); opacity:0; }
   .aberto .caixa-wrap { animation:none; }
   .dica {
-    margin-top:26px; font-family:Fredoka, sans-serif; font-weight:500;
+    margin-top:26px; font-family:"Gorga Grotesque", sans-serif; font-weight:500;
     color:#B9C4EA; letter-spacing:.12em; text-transform:uppercase; font-size:.82rem;
     animation: pulsa 2s ease-in-out infinite;
   }
@@ -82,14 +83,14 @@
   .aberto-fim .revela { opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
   .revela .catavento { width:min(30vw,132px); margin:0 auto 18px; animation:gira 5s linear infinite; }
   @keyframes gira { to { transform:rotate(360deg); } }
-  .revela h1 { font-family:Fredoka, sans-serif; font-weight:600; font-size:clamp(1.9rem,6.5vw,3rem); line-height:1.15; }
+  .revela h1 { font-family:"Gorga Grotesque", sans-serif; font-weight:600; font-size:clamp(1.9rem,6.5vw,3rem); line-height:1.15; }
   .revela h1 em { font-style:normal; color:var(--laranja-vivo); }
   .revela p { color:#B9C4EA; font-size:clamp(1rem,3.2vw,1.15rem); margin:16px auto 0; max-width:430px; }
   .revela p b { color:#fff; }
   .btn-presente {
     display:inline-flex; align-items:center; gap:10px;
     margin-top:30px;
-    font-family:Fredoka, sans-serif; font-weight:600; font-size:1.1rem;
+    font-family:"Gorga Grotesque", sans-serif; font-weight:600; font-size:1.1rem;
     background:var(--laranja); color:#fff; text-decoration:none;
     padding:18px 40px; border-radius:999px;
     box-shadow:0 14px 44px rgba(245,79,3,.4);
