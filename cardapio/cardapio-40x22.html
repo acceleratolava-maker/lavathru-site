@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Cardápio Lava Thru — 40×22cm frente e verso</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+    @font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-regular.woff2") format("woff2"); font-weight:100 500; font-style:normal; }
+    @font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-bold.woff2") format("woff2"); font-weight:600 900; font-style:normal; }
+  </style>
+  <style>
   :root {
     --laranja:#F54F03; --laranja-vivo:#FF5A12; --laranja-escuro:#C93E00;
     --navy:#0D1D60; --navy-deep:#070F3E; --celeste:#61B1DF; --celeste-suave:#BDE0F5;
@@ -15,7 +16,7 @@
   * { box-sizing:border-box; margin:0; padding:0; }
   @page { size: 400mm 220mm; margin: 0; }
   html, body { background:#555; }
-  body { font-family:"Hanken Grotesk", Arial, sans-serif; }
+  body { font-family:"Gorga Grotesque", Arial, sans-serif; }
 
   .pagina {
     width:400mm; height:220mm;
@@ -25,7 +26,7 @@
   }
   @media print { body{background:#fff} .pagina{margin:0} }
 
-  .fredoka { font-family:Fredoka, sans-serif; }
+  .fredoka { font-family:"Gorga Grotesque", sans-serif; }
 
   /* ==================== FRENTE ==================== */
   .frente {
@@ -53,7 +54,7 @@
   .passos-f { display:flex; gap:5mm; margin-top:7mm; }
   .passo-f { flex:1; background:rgba(97,177,223,.10); border:.5mm solid rgba(97,177,223,.4);
     border-radius:6mm; padding:5.5mm 6mm; }
-  .passo-f b { display:flex; align-items:center; gap:3mm; font-family:Fredoka; font-size:5.8mm; font-weight:600; }
+  .passo-f b { display:flex; align-items:center; gap:3mm; font-family:"Gorga Grotesque"; font-size:5.8mm; font-weight:600; }
   .passo-f b i { font-style:normal; display:inline-flex; align-items:center; justify-content:center;
     width:8.4mm; height:8.4mm; border-radius:2.6mm; background:var(--laranja); font-size:4.6mm; flex:none; }
   .passo-f span { display:block; color:#B9C4EA; font-size:4.2mm; margin-top:2mm; line-height:1.35; }
@@ -62,10 +63,10 @@
     border-radius:7mm; padding:7mm 9mm; display:flex; align-items:center; gap:8mm;
     box-shadow:0 4mm 12mm rgba(245,79,3,.35); }
   .assinatura-f .pw-mini { width:16mm; flex:none; }
-  .assinatura-f h3 { font-family:Fredoka; font-size:7.6mm; font-weight:600; line-height:1.15; }
+  .assinatura-f h3 { font-family:"Gorga Grotesque"; font-size:7.6mm; font-weight:600; line-height:1.15; }
   .assinatura-f p { font-size:4.4mm; color:#FFE6D8; margin-top:1.5mm; }
   .assinatura-f .preco-f { margin-left:auto; text-align:right; flex:none; }
-  .assinatura-f .preco-f b { font-family:Fredoka; font-size:11mm; font-weight:600; display:block; line-height:1; }
+  .assinatura-f .preco-f b { font-family:"Gorga Grotesque"; font-size:11mm; font-weight:600; display:block; line-height:1; }
   .assinatura-f .preco-f span { font-size:4.2mm; color:#FFE6D8; }
 
   .frente-dir { flex:1; display:flex; flex-direction:column; gap:7mm; }
@@ -74,10 +75,10 @@
   .qr-card .qr-box { width:42mm; height:42mm; flex:none; display:flex; align-items:center; justify-content:center; }
   .qr-card .qr-box img { width:100%; height:100%; }
   .qr-vazio { border:1mm dashed var(--celeste); border-radius:4mm; color:var(--celeste);
-    font-family:Fredoka; font-size:4.2mm; text-align:center; padding:4mm; line-height:1.3;
+    font-family:"Gorga Grotesque"; font-size:4.2mm; text-align:center; padding:4mm; line-height:1.3;
     display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
-  .qr-card h4 { font-family:Fredoka; font-size:6.6mm; font-weight:600; line-height:1.1; }
-  .qr-card h4 small { display:block; font-family:"Hanken Grotesk"; font-weight:700; font-size:3.9mm;
+  .qr-card h4 { font-family:"Gorga Grotesque"; font-size:6.6mm; font-weight:600; line-height:1.1; }
+  .qr-card h4 small { display:block; font-family:"Gorga Grotesque"; font-weight:700; font-size:3.9mm;
     letter-spacing:.14em; text-transform:uppercase; color:var(--laranja-escuro); margin-bottom:2mm; }
   .qr-card p { font-size:4.3mm; color:#5A6484; margin-top:2.5mm; line-height:1.4; }
   .qr-card p b { color:var(--navy); }
@@ -97,18 +98,18 @@
   .verso-header { display:flex; align-items:center; gap:6mm; height:13mm; }
   .verso-header .logo-v { display:flex; align-items:center; gap:3.5mm; }
   .verso-header .logo-v .pw-mini { width:12mm; }
-  .verso-header .logo-nome { font-family:Fredoka; font-weight:600; font-size:8.4mm; color:var(--navy); line-height:.9; }
-  .verso-header .logo-sub { font-family:Fredoka; font-weight:500; font-size:2.7mm; letter-spacing:.42em;
+  .verso-header .logo-nome { font-family:"Gorga Grotesque"; font-weight:600; font-size:8.4mm; color:var(--navy); line-height:.9; }
+  .verso-header .logo-sub { font-family:"Gorga Grotesque"; font-weight:500; font-size:2.7mm; letter-spacing:.42em;
     text-transform:uppercase; color:var(--laranja); }
-  .verso-header h1 { font-family:Fredoka; font-weight:600; font-size:9.8mm; color:var(--navy); margin-left:6mm; }
+  .verso-header h1 { font-family:"Gorga Grotesque"; font-weight:600; font-size:9.8mm; color:var(--navy); margin-left:6mm; }
   .verso-header h1 em { font-style:normal; color:var(--laranja); }
-  .verso-header .tag-3min { margin-left:auto; background:var(--navy); color:#fff; font-family:Fredoka;
+  .verso-header .tag-3min { margin-left:auto; background:var(--navy); color:#fff; font-family:"Gorga Grotesque";
     font-weight:500; font-size:4.6mm; padding:3mm 7mm; border-radius:99mm; }
   .verso-header .tag-3min b { color:var(--celeste); }
 
   .lavagens { display:flex; gap:4.5mm; flex:1; }
   .lav { flex:1; border-radius:6.5mm; padding:5mm 5.5mm 4.5mm; display:flex; flex-direction:column; position:relative; }
-  .lav h2 { font-family:Fredoka; font-weight:600; font-size:8.6mm; letter-spacing:.02em; }
+  .lav h2 { font-family:"Gorga Grotesque"; font-weight:600; font-size:8.6mm; letter-spacing:.02em; }
   .lav .tag { font-weight:700; font-size:3.7mm; letter-spacing:.1em; text-transform:uppercase; margin-top:1mm; }
   .lav .ind { font-size:3.9mm; margin-top:2.2mm; line-height:1.35; min-height:8mm; }
   .lav ul { list-style:none; margin-top:2.2mm; display:flex; flex-direction:column; gap:1.8mm; }
@@ -118,11 +119,11 @@
   .veic { margin-top:auto; display:flex; gap:2.5mm; align-items:flex-start; border-radius:3.6mm;
     padding:2.8mm 3.4mm; font-size:3.6mm; font-weight:700; line-height:1.3; }
   .veic svg { width:4.6mm; height:4.6mm; flex:none; margin-top:.2mm; }
-  .preco-lav { margin-top:2.8mm; display:flex; align-items:baseline; gap:1.5mm; font-family:Fredoka; }
+  .preco-lav { margin-top:2.8mm; display:flex; align-items:baseline; gap:1.5mm; font-family:"Gorga Grotesque"; }
   .preco-lav .rs { font-size:5mm; font-weight:500; }
   .preco-lav .num { font-size:13mm; font-weight:600; line-height:.9; letter-spacing:-.4mm; }
   .preco-lav .cent { font-size:6.5mm; font-weight:600; }
-  .preco-lav .un { font-size:3.6mm; margin-left:1mm; opacity:.75; font-family:"Hanken Grotesk"; }
+  .preco-lav .un { font-size:3.6mm; margin-left:1mm; opacity:.75; font-family:"Gorga Grotesque"; }
 
   .lav-essencial { background:var(--celeste-suave); color:var(--navy); }
   .lav-essencial .tag { color:#1A6FA3; }
@@ -142,7 +143,7 @@
   .lav-box .ind { color:#FFE6D8; }
   .lav-box .veic { background:rgba(255,255,255,.2); color:#FFF0E7; }
   .badge-top { position:absolute; top:-4mm; left:50%; transform:translateX(-50%);
-    background:var(--navy); color:#fff; font-family:Fredoka; font-weight:600; font-size:3.6mm;
+    background:var(--navy); color:#fff; font-family:"Gorga Grotesque"; font-weight:600; font-size:3.6mm;
     letter-spacing:.14em; text-transform:uppercase; padding:2mm 5.5mm; border-radius:99mm; white-space:nowrap;
     box-shadow:0 2mm 6mm rgba(0,0,0,.25); }
 
@@ -152,7 +153,7 @@
                linear-gradient(120deg, #123086, var(--navy-deep) 75%);
     color:#fff; padding:6mm 8mm; display:flex; flex-direction:column; }
   .assinatura-v .pw-agua { position:absolute; right:-14mm; bottom:-16mm; width:52mm; opacity:.1; }
-  .assinatura-v h2 { font-family:Fredoka; font-weight:600; font-size:8.6mm; line-height:1.1; }
+  .assinatura-v h2 { font-family:"Gorga Grotesque"; font-weight:600; font-size:8.6mm; line-height:1.1; }
   .assinatura-v h2 em { font-style:normal; color:var(--celeste); }
   .chips-v { display:flex; flex-wrap:wrap; gap:2.4mm; margin-top:3.4mm; }
   .chip-v { font-size:3.7mm; font-weight:700; background:rgba(97,177,223,.14);
@@ -163,15 +164,15 @@
 
   .mini-col { flex:1; display:flex; flex-direction:column; gap:4.5mm; }
   .mini-card { background:#fff; border-radius:6.5mm; padding:4.5mm 5.5mm; box-shadow:0 2mm 8mm rgba(13,29,96,.08); flex:1; }
-  .mini-card h3 { font-family:Fredoka; font-weight:600; font-size:4.9mm; color:var(--navy);
+  .mini-card h3 { font-family:"Gorga Grotesque"; font-weight:600; font-size:4.9mm; color:var(--navy);
     display:flex; align-items:center; gap:2.5mm; margin-bottom:1mm; flex-wrap:wrap; }
   .mini-card h3::before { content:""; width:5mm; height:1.4mm; border-radius:1mm; background:var(--laranja); }
   .mini-card .sub-mini { font-size:3.1mm; color:#8F9CCB; margin-bottom:2mm; line-height:1.3; }
   .mini-card table { width:100%; border-collapse:collapse; }
   .mini-card td { font-size:3.55mm; color:#3a4468; padding:1.15mm 0; border-bottom:.3mm solid #EDF2F8; vertical-align:top; line-height:1.3; }
   .mini-card tr:last-child td { border-bottom:none; }
-  .mini-card td.v { text-align:right; font-family:Fredoka; font-weight:600; color:var(--navy); white-space:nowrap; padding-left:3mm; }
-  .mini-card td.secao { font-family:Fredoka; font-weight:600; font-size:4.3mm; color:var(--navy);
+  .mini-card td.v { text-align:right; font-family:"Gorga Grotesque"; font-weight:600; color:var(--navy); white-space:nowrap; padding-left:3mm; }
+  .mini-card td.secao { font-family:"Gorga Grotesque"; font-weight:600; font-size:4.3mm; color:var(--navy);
     padding-top:2.6mm; border-bottom:none; }
   .mini-card td.secao::before { content:""; display:inline-block; width:4mm; height:1.2mm;
     border-radius:1mm; background:var(--laranja); margin-right:2mm; vertical-align:middle; }

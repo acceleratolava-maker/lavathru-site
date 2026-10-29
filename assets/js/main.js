@@ -388,6 +388,85 @@
     });
   }
 
+  /* ---------- Franquia: formulário de apresentação ----------
+     Site estático (sem backend): o lead sai pelo WhatsApp da Lava Thru,
+     com os dados já preenchidos na mensagem. */
+  var frm = document.getElementById("frform");
+  if (frm) {
+    var WHATS_EXPANSAO = "5544991754488";
+    var campos = ["fnome", "femail", "fzap", "fcap"].map(function (id) { return document.getElementById(id); });
+    var gotas = frm.querySelectorAll(".fr-gotas svg");
+    var msg = document.getElementById("frmsg");
+    var btn = frm.querySelector("button[type=submit]");
+
+    var valido = function (el) {
+      var v = (el.value || "").trim();
+      if (el.id === "femail") return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if (el.id === "fzap") return v.replace(/\D/g, "").length >= 10;
+      if (el.id === "fnome") return v.length >= 2;
+      return v !== "";
+    };
+
+    var acenderGotas = function () {
+      var n = campos.filter(valido).length;
+      gotas.forEach(function (g, i) { g.classList.toggle("on", i < n); });
+    };
+
+    var zap = document.getElementById("fzap");
+    zap.addEventListener("input", function () {
+      var d = zap.value.replace(/\D/g, "").slice(0, 11);
+      var f = d;
+      if (d.length > 2) f = "(" + d.slice(0, 2) + ") " + d.slice(2);
+      if (d.length > 7) f = "(" + d.slice(0, 2) + ") " + d.slice(2, d.length - 4) + "-" + d.slice(d.length - 4);
+      zap.value = f;
+    });
+
+    frm.addEventListener("input", function (e) {
+      if (e.target.classList) e.target.classList.remove("invalido");
+      acenderGotas();
+    });
+    frm.addEventListener("change", acenderGotas);
+
+    frm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var mostrar = function (texto, erro) {
+        msg.hidden = false;
+        msg.textContent = texto;
+        msg.classList.toggle("erro", !!erro);
+      };
+
+      if (document.getElementById("frhp").value) { mostrar("Recebido! Em breve entraremos em contato."); return; }
+
+      var invalidos = campos.filter(function (el) { return !valido(el); });
+      campos.forEach(function (el) { el.classList.toggle("invalido", invalidos.indexOf(el) !== -1); });
+      if (invalidos.length) {
+        invalidos[0].focus();
+        mostrar("Confira os campos destacados para continuar.", true);
+        return;
+      }
+
+      var texto =
+        "Olá! Quero receber a apresentação da franquia Lava Thru.\n\n" +
+        "Nome: " + campos[0].value.trim() + "\n" +
+        "E-mail: " + campos[1].value.trim() + "\n" +
+        "WhatsApp: " + campos[2].value.trim() + "\n" +
+        "Capital disponível: " + campos[3].value;
+      var url = "https://wa.me/" + WHATS_EXPANSAO + "?text=" + encodeURIComponent(texto);
+
+      gotas.forEach(function (g) { g.classList.add("on"); });
+      btn.disabled = true;
+      /* sem "noopener" no 3º argumento: com ele o window.open sempre devolve null */
+      var janela = window.open(url, "_blank");
+      if (janela) { try { janela.opener = null; } catch (err) {} }
+      else window.location.href = url;
+
+      frm.querySelectorAll(".fr-fs, label, input, select, .fr-alt").forEach(function (el) { el.style.display = "none"; });
+      btn.style.display = "none";
+      frm.querySelector("h3").innerHTML = "Quase lá! <span class=\"destaque\">Falta 1 toque.</span>";
+      mostrar("✅ Abrimos o WhatsApp com seus dados já preenchidos — é só tocar em enviar que nossa equipe de expansão responde em seguida. Obrigado pelo interesse na franquia Lava Thru!");
+    });
+  }
+
   /* ---------- Ano no rodapé ---------- */
   document.querySelectorAll("[data-ano]").forEach(function (el) {
     el.textContent = new Date().getFullYear();

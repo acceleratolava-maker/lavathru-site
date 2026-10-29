@@ -8,7 +8,7 @@ Basta subir os arquivos em qualquer hospedagem.
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | Home completa: hero interativo, como funciona, diferenciais, planos/preços, limpeza interna, sobre, contato + mapa |
+| `index.html` | Home completa: hero interativo, como funciona, diferenciais, planos/preços, limpeza interna, sobre, seja um franqueado (com formulário → WhatsApp), contato + mapa |
 | `termos.html` | Termos de Uso (conteúdo real do site original) |
 | `privacidade.html` | Política de Privacidade (conteúdo real + direitos LGPD) |
 

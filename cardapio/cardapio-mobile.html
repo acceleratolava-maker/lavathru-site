@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Cardápio Lava Thru — versão mobile (9:16)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+    @font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-regular.woff2") format("woff2"); font-weight:100 500; font-style:normal; }
+    @font-face { font-family:"Gorga Grotesque"; src:url("../assets/fonts/gorga-bold.woff2") format("woff2"); font-weight:600 900; font-style:normal; }
+  </style>
+  <style>
   :root {
     --laranja:#F54F03; --laranja-vivo:#FF5A12; --laranja-escuro:#C93E00;
     --navy:#0D1D60; --navy-deep:#070F3E; --celeste:#61B1DF; --celeste-suave:#BDE0F5;
@@ -14,8 +15,8 @@
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   @page { size: 108mm 192mm; margin:0; }
-  body { font-family:"Hanken Grotesk", Arial, sans-serif; background:#555; }
-  .fredoka { font-family:Fredoka, sans-serif; }
+  body { font-family:"Gorga Grotesque", Arial, sans-serif; background:#555; }
+  .fredoka { font-family:"Gorga Grotesque", sans-serif; }
   .art { width:108mm; height:192mm; position:relative; overflow:hidden; page-break-after:always; margin:3mm auto; }
   @media print { body{background:#fff} .art{margin:0} }
 
@@ -28,8 +29,8 @@
   .m-capa > *, .m-extra-pg > *, .m-lav-pg > .m-head { flex-shrink:0; }
   .m-logo { display:flex; align-items:center; gap:2.6mm; }
   .m-logo svg { width:9mm; }
-  .m-logo .nome { font-family:Fredoka; font-weight:600; font-size:6.4mm; line-height:.9; }
-  .m-logo .sub { font-family:Fredoka; font-weight:500; font-size:2mm; letter-spacing:.42em; text-transform:uppercase; color:var(--laranja-vivo); }
+  .m-logo .nome { font-family:"Gorga Grotesque"; font-weight:600; font-size:6.4mm; line-height:.9; }
+  .m-logo .sub { font-family:"Gorga Grotesque"; font-weight:500; font-size:2mm; letter-spacing:.42em; text-transform:uppercase; color:var(--laranja-vivo); }
   .m-titulo { font-size:8.6mm; line-height:1.12; font-weight:600; margin-top:5mm; }
   .m-titulo em { font-style:normal; color:var(--laranja-vivo); }
   .m-sub { font-size:3.8mm; color:#C6CFF0; margin-top:2.5mm; line-height:1.42; }
@@ -39,23 +40,23 @@
     border-radius:4mm; padding:2.7mm 4mm; display:flex; gap:3mm; align-items:center; }
   .m-passo i { font-style:normal; display:flex; align-items:center; justify-content:center;
     width:6.6mm; height:6.6mm; border-radius:2.1mm; background:var(--laranja);
-    font-family:Fredoka; font-weight:600; font-size:3.8mm; flex:none; }
-  .m-passo b { font-family:Fredoka; font-weight:600; font-size:4.3mm; display:block; }
+    font-family:"Gorga Grotesque"; font-weight:600; font-size:3.8mm; flex:none; }
+  .m-passo b { font-family:"Gorga Grotesque"; font-weight:600; font-size:4.3mm; display:block; }
   .m-passo span { font-size:3.3mm; color:#B9C4EA; display:block; line-height:1.3; }
   .m-qr { margin-top:4.5mm; background:#fff; color:var(--navy); border-radius:5mm;
     padding:3.4mm 4mm; display:flex; align-items:center; gap:4mm; }
   .m-qr img { width:20mm; height:20mm; flex:none; }
-  .m-qr h4 { font-family:Fredoka; font-weight:600; font-size:4.6mm; line-height:1.15; }
-  .m-qr h4 small { display:block; font-family:"Hanken Grotesk"; font-weight:700; font-size:2.7mm;
+  .m-qr h4 { font-family:"Gorga Grotesque"; font-weight:600; font-size:4.6mm; line-height:1.15; }
+  .m-qr h4 small { display:block; font-family:"Gorga Grotesque"; font-weight:700; font-size:2.7mm;
     letter-spacing:.14em; text-transform:uppercase; color:var(--laranja-escuro); margin-bottom:1.4mm; }
   .m-qr p { font-size:3.2mm; color:#5A6484; margin-top:1.6mm; line-height:1.35; }
   .m-qr p b { color:var(--navy); }
   .m-assinatura { margin-top:auto; background:linear-gradient(120deg, var(--laranja), var(--laranja-escuro));
     border-radius:5mm; padding:3.6mm 4.5mm; }
-  .m-assinatura h3 { font-family:Fredoka; font-weight:600; font-size:5mm; }
+  .m-assinatura h3 { font-family:"Gorga Grotesque"; font-weight:600; font-size:5mm; }
   .m-assinatura p { font-size:3.2mm; color:#FFE6D8; margin-top:.8mm; line-height:1.3; }
-  .m-assinatura .preco { font-family:Fredoka; font-weight:600; font-size:7.2mm; margin-top:1.6mm; }
-  .m-assinatura .preco small { font-family:"Hanken Grotesk"; font-weight:600; font-size:3mm; color:#FFE6D8; }
+  .m-assinatura .preco { font-family:"Gorga Grotesque"; font-weight:600; font-size:7.2mm; margin-top:1.6mm; }
+  .m-assinatura .preco small { font-family:"Gorga Grotesque"; font-weight:600; font-size:3mm; color:#FFE6D8; }
   .m-rodape { margin-top:3.6mm; font-size:2.8mm; color:#B9C4EA; text-align:center; line-height:1.5; }
   .m-rodape b { color:#fff; }
 
@@ -63,12 +64,12 @@
   .m-lav-pg { background:var(--espuma); padding:8mm; display:flex; flex-direction:column; gap:4mm; }
   .m-head { display:flex; align-items:center; gap:3mm; }
   .m-head svg { width:8mm; }
-  .m-head h1 { font-family:Fredoka; font-weight:600; font-size:7.2mm; color:var(--navy); }
+  .m-head h1 { font-family:"Gorga Grotesque"; font-weight:600; font-size:7.2mm; color:var(--navy); }
   .m-head h1 em { font-style:normal; color:var(--laranja); }
-  .m-head .pg { margin-left:auto; font-family:Fredoka; font-weight:500; font-size:3.4mm; color:#8F9CCB; }
+  .m-head .pg { margin-left:auto; font-family:"Gorga Grotesque"; font-weight:500; font-size:3.4mm; color:#8F9CCB; }
 
   .m-lav { border-radius:5mm; padding:4.2mm 5.5mm; flex:1; display:flex; flex-direction:column; position:relative; }
-  .m-lav h2 { font-family:Fredoka; font-weight:600; font-size:7mm; }
+  .m-lav h2 { font-family:"Gorga Grotesque"; font-weight:600; font-size:7mm; }
   .m-lav .tag { font-weight:700; font-size:3.1mm; letter-spacing:.1em; text-transform:uppercase; margin-top:.6mm; }
   .m-lav .ind { font-size:3.4mm; margin-top:1.8mm; line-height:1.35; }
   .m-lav ul { list-style:none; margin-top:2mm; display:flex; flex-direction:column; gap:1.4mm; }
@@ -78,12 +79,12 @@
   .m-veic { margin-top:auto; display:flex; gap:2.2mm; align-items:flex-start; border-radius:3mm;
     padding:2.4mm 3mm; font-size:3.2mm; font-weight:700; line-height:1.3; }
   .m-veic svg { width:4.2mm; height:4.2mm; flex:none; }
-  .m-preco { margin-top:2.2mm; font-family:Fredoka; display:flex; align-items:baseline; gap:1.2mm; }
+  .m-preco { margin-top:2.2mm; font-family:"Gorga Grotesque"; display:flex; align-items:baseline; gap:1.2mm; }
   .m-preco .rs { font-size:4.2mm; font-weight:500; }
   .m-preco .num { font-size:10.4mm; font-weight:600; line-height:.9; }
   .m-preco .cent { font-size:5.4mm; font-weight:600; }
   .badge-m { position:absolute; top:-3.2mm; right:5mm; background:var(--navy); color:#fff;
-    font-family:Fredoka; font-weight:600; font-size:2.9mm; letter-spacing:.12em; text-transform:uppercase;
+    font-family:"Gorga Grotesque"; font-weight:600; font-size:2.9mm; letter-spacing:.12em; text-transform:uppercase;
     padding:1.5mm 4mm; border-radius:99mm; box-shadow:0 1.5mm 4mm rgba(0,0,0,.25); }
 
   .lv-essencial { background:var(--celeste-suave); color:var(--navy); }
@@ -100,12 +101,12 @@
   .lv-box .m-veic { background:rgba(255,255,255,.2); color:#FFF0E7; }
 
   /* ---------- extras ---------- */
-  .m-extra-pg { background:var(--espuma); padding:6mm 8mm; display:flex; flex-direction:column; gap:2.6mm; }
+  .m-extra-pg { background:var(--espuma); padding:5.4mm 8mm; display:flex; flex-direction:column; gap:2.3mm; }
   .m-assin-v { border-radius:5mm; position:relative; overflow:hidden;
     background:radial-gradient(60mm 40mm at 88% 15%, rgba(97,177,223,.35), transparent 60%),
                linear-gradient(120deg, #123086, var(--navy-deep) 75%);
     color:#fff; padding:4.5mm 5mm; }
-  .m-assin-v h2 { font-family:Fredoka; font-weight:600; font-size:5mm; line-height:1.15; }
+  .m-assin-v h2 { font-family:"Gorga Grotesque"; font-weight:600; font-size:5mm; line-height:1.15; }
   .m-assin-v h2 em { font-style:normal; color:var(--celeste); }
   .m-assin-v .m-preco .num { font-size:9.2mm; }
   .m-chips { display:flex; flex-wrap:wrap; gap:1.4mm; margin-top:1.8mm; }
@@ -115,15 +116,15 @@
   .m-assin-v .obs { font-size:2.9mm; color:#8F9CCB; line-height:1.35; padding-bottom:.8mm; }
   .m-assin-v .obs b { color:#CFE7F8; }
   .m-card { background:#fff; border-radius:5mm; padding:3mm 4.5mm; box-shadow:0 1.5mm 5mm rgba(13,29,96,.08); }
-  .m-card h3 { font-family:Fredoka; font-weight:600; font-size:4.2mm; color:var(--navy);
+  .m-card h3 { font-family:"Gorga Grotesque"; font-weight:600; font-size:4.2mm; color:var(--navy);
     display:flex; align-items:center; gap:2mm; margin-bottom:.8mm; }
   .m-card h3::before { content:""; width:4mm; height:1.1mm; border-radius:1mm; background:var(--laranja); }
   .m-card .submini { font-size:2.8mm; color:#8F9CCB; margin-bottom:1.4mm; }
   .m-card table { width:100%; border-collapse:collapse; }
-  .m-card td { font-size:3.05mm; color:#3a4468; padding:.9mm 0; border-bottom:.25mm solid #EDF2F8; line-height:1.3; vertical-align:top; }
+  .m-card td { font-size:2.95mm; color:#3a4468; padding:.8mm 0; border-bottom:.25mm solid #EDF2F8; line-height:1.28; vertical-align:top; }
   .m-card tr:last-child td { border-bottom:none; }
-  .m-card td.v { text-align:right; font-family:Fredoka; font-weight:600; color:var(--navy); white-space:nowrap; padding-left:2.5mm; }
-  .m-card td.secao { font-family:Fredoka; font-weight:600; font-size:3.7mm; color:var(--navy); padding-top:2mm; border-bottom:none; }
+  .m-card td.v { text-align:right; font-family:"Gorga Grotesque"; font-weight:600; color:var(--navy); white-space:nowrap; padding-left:2.5mm; }
+  .m-card td.secao { font-family:"Gorga Grotesque"; font-weight:600; font-size:3.7mm; color:var(--navy); padding-top:2mm; border-bottom:none; }
   .m-card td.secao::before { content:""; display:inline-block; width:3.4mm; height:1mm; border-radius:1mm; background:var(--laranja); margin-right:1.8mm; vertical-align:middle; }
   .m-rodape2 { text-align:center; font-size:2.9mm; color:#5A6484; line-height:1.5; margin-top:auto; }
   .m-rodape2 b { color:var(--navy); }
@@ -271,7 +272,7 @@
       <span class="m-chip">Vinculada à placa</span>
     </div>
     <div class="linha">
-      <div class="m-preco" style="color:#fff;margin-top:0"><span class="rs">R$</span><span class="num">199</span><span class="cent">,90</span><span style="font-family:'Hanken Grotesk';font-size:3mm;opacity:.75">/mês</span></div>
+      <div class="m-preco" style="color:#fff;margin-top:0"><span class="rs">R$</span><span class="num">199</span><span class="cent">,90</span><span style="font-family:'Gorga Grotesque';font-size:3mm;opacity:.75">/mês</span></div>
       <p class="obs">Assine no guichê ou em<br><b>www.lavathru.com.br</b></p>
     </div>
   </div>
@@ -309,8 +310,8 @@
   </div>
 
   <div class="m-rodape2">
-    <b>Seg–Sáb</b> 07:30–19:30 · <b>Dom</b> 09:00–15:00 · WhatsApp <b>(44) 9 9175-4488</b><br>
-    @lavathru · <b>www.lavathru.com.br</b>
+    <span style="white-space:nowrap"><b>Seg–Sáb</b> 07:30–19:30 · <b>Dom</b> 09:00–15:00</span><br>WhatsApp <b style="white-space:nowrap">(44) 9 9175-4488</b> · 
+    @lavathru · <b style="white-space:nowrap">www.lavathru.com.br</b>
   </div>
 </div>
 
