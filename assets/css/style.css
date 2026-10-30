@@ -364,7 +364,7 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
   display: inline-flex; align-items: center; gap: 14px;
   margin-top: 28px; padding-top: 16px;
   border-top: 1px solid rgba(13, 29, 96, .12);
-  font-size: .8rem; letter-spacing: .03em; color: var(--cinza);
+  font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cinza);
 }
 .rede-accelerato span { transition: color .25s ease; }
 .rede-accelerato:hover span { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
