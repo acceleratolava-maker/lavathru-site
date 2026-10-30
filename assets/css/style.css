@@ -359,6 +359,17 @@ body.menu-aberto .menu-toggle { background: var(--laranja); }
 .hero-meta svg { width: 18px; height: 18px; color: var(--laranja); flex: none; }
 .hero-meta b { color: var(--navy); }
 
+/* Selo discreto: faz parte da rede Accelerato (logo oficial, só escala proporcional, sem efeito) */
+.rede-accelerato {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 28px; padding-top: 16px;
+  border-top: 1px solid rgba(13, 29, 96, .12);
+  font-size: .8rem; letter-spacing: .03em; color: var(--cinza);
+}
+.rede-accelerato span { transition: color .25s ease; }
+.rede-accelerato:hover span { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+.rede-accelerato img { height: 34px; width: auto; display: block; }
+
 /* Palco do catavento */
 .hero-palco {
   position: relative;
@@ -1239,6 +1250,8 @@ body.intro-rodando { overflow: hidden; }
 @media (max-width: 480px) {
   .btn { padding: 15px 26px; font-size: .95rem; }
   .hero-ctas .btn { width: 100%; }
+  .rede-accelerato { margin-top: 22px; }
+  .rede-accelerato img { height: 30px; }
   .sobre-stats { grid-template-columns: 1fr 1fr; }
   .fr-mods { grid-template-columns: 1fr; }
   .fr-num { padding: 20px 12px; }
