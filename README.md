@@ -32,6 +32,7 @@ Basta subir os arquivos em qualquer hospedagem.
 | Horários / endereço / telefone | `index.html` (hero, `#contato`, footer, JSON-LD no `<head>`) e footers das demais páginas |
 | Links de WhatsApp | busca global por `wa.me/5544991754488` (mensagem pré-preenchida no parâmetro `text=`) |
 | Área do cliente | aponta para `https://www.lavathru.com.br/login` (sistema atual de compra/assinatura) |
+| Selo "Faz parte da rede Accelerato" | `index.html` — link `.rede-accelerato` no hero → `https://acceleratogowash.com`; logo oficial em `assets/img/accelerato-gowash.png` (não recolorir nem aplicar efeito) |
 
 ## SEO / extras já inclusos
 
